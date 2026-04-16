@@ -2,14 +2,14 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const pageTitles = {
-  '/commandcentre/overview': { title: 'Overview', subtitle: 'Platform health and key metrics at a glance' },
-  '/commandcentre/homepage': { title: 'Homepage Control', subtitle: 'Manage your homepage content and sections' },
-  '/commandcentre/services': { title: 'Services & Analytics', subtitle: 'Manage service listings and track performance' },
-  '/commandcentre/businesses': { title: 'Business Management', subtitle: 'Review and manage business registrations' },
-  '/commandcentre/pricing': { title: 'Pricing Manager', subtitle: 'Control pricing plans and feature access' },
-  '/commandcentre/testimonials': { title: 'Testimonials Manager', subtitle: 'Curate client reviews and case studies' },
-  '/commandcentre/analytics': { title: 'Analytics Dashboard', subtitle: 'Deep dive into platform usage and growth' },
-  '/commandcentre/settings': { title: 'Settings', subtitle: 'Configure platform-wide settings and preferences' },
+  '/admin/commandcentre/overview': { title: 'Overview', subtitle: 'Platform health and key metrics at a glance' },
+  '/admin/commandcentre/homepage': { title: 'Homepage Control', subtitle: 'Manage your homepage content and sections' },
+  '/admin/commandcentre/services': { title: 'Services & Analytics', subtitle: 'Manage service listings and track performance' },
+  '/admin/commandcentre/businesses': { title: 'Business Management', subtitle: 'Review and manage business registrations' },
+  '/admin/commandcentre/pricing': { title: 'Pricing Manager', subtitle: 'Control pricing plans and feature access' },
+  '/admin/commandcentre/testimonials': { title: 'Testimonials Manager', subtitle: 'Curate client reviews and case studies' },
+  '/admin/commandcentre/analytics': { title: 'Analytics Dashboard', subtitle: 'Deep dive into platform usage and growth' },
+  '/admin/commandcentre/settings': { title: 'Settings', subtitle: 'Configure platform-wide settings and preferences' },
 };
 
 export default function Navbar() {

@@ -28,7 +28,6 @@ function App() {
         <Route path="/" element={<LocalBoostHomepage />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
-        <Route path="/admin" element={<AdminDashboard />} />
 
         {/* Public Routes */}
         <Route path="/sign-in" element={<SignInSignUp />} />
@@ -38,17 +37,19 @@ function App() {
         <Route path="/flow" element={<LocalBoostFlow />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
 
-        {/* Command Centre - Nested Routes */}
-        <Route path="/commandcentre" element={<CommandCentreLayout />}>
-          <Route index element={<Overview />} />
-          <Route path="overview" element={<Overview />} />
-          <Route path="homepage" element={<Homepage />} />
-          <Route path="services" element={<Services />} />
-          <Route path="businesses" element={<Businesses />} />
-          <Route path="pricing" element={<Pricing />} />
-          <Route path="testimonials" element={<Testimonials />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="settings" element={<Settings />} />
+        {/* Admin — Command Centre nested inside */}
+        <Route path="/admin" element={<AdminDashboard />}>
+          <Route path="commandcentre" element={<CommandCentreLayout />}>
+            <Route index element={<Overview />} />
+            <Route path="overview" element={<Overview />} />
+            <Route path="homepage" element={<Homepage />} />
+            <Route path="services" element={<Services />} />
+            <Route path="businesses" element={<Businesses />} />
+            <Route path="pricing" element={<Pricing />} />
+            <Route path="testimonials" element={<Testimonials />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>

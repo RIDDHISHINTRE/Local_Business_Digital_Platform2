@@ -138,7 +138,7 @@ export default function Overview() {
 <span className="text-slate-900">88%</span>
 </div>
 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-<div className="h-full bg-blue-600 rounded-full" style="width: 88%"></div>
+<div className="h-full bg-blue-600 rounded-full" style={{ width: '88%' }}></div>
 </div>
 </div>
 <div className="space-y-2">
@@ -147,7 +147,7 @@ export default function Overview() {
 <span className="text-slate-900">64%</span>
 </div>
 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-<div className="h-full bg-blue-500 rounded-full" style="width: 64%"></div>
+<div className="h-full bg-blue-500 rounded-full" style={{ width: '64%' }}></div>
 </div>
 </div>
 <div className="space-y-2">
@@ -156,7 +156,7 @@ export default function Overview() {
 <span className="text-slate-900">42%</span>
 </div>
 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-<div className="h-full bg-blue-400 rounded-full" style="width: 42%"></div>
+<div className="h-full bg-blue-400 rounded-full" style={{ width: '42%' }}></div>
 </div>
 </div>
 <div className="space-y-2">
@@ -165,7 +165,7 @@ export default function Overview() {
 <span className="text-slate-900">31%</span>
 </div>
 <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-<div className="h-full bg-blue-300 rounded-full" style="width: 31%"></div>
+<div className="h-full bg-blue-300 rounded-full" style={{ width: '31%' }}></div>
 </div>
 </div>
 </div>

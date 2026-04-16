@@ -2,14 +2,14 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const navItems = [
-  { to: '/commandcentre/overview', icon: 'dashboard', label: 'Overview' },
-  { to: '/commandcentre/homepage', icon: 'home_max', label: 'Homepage' },
-  { to: '/commandcentre/services', icon: 'settings_suggest', label: 'Services' },
-  { to: '/commandcentre/businesses', icon: 'store', label: 'Businesses' },
-  { to: '/commandcentre/pricing', icon: 'payments', label: 'Pricing' },
-  { to: '/commandcentre/testimonials', icon: 'format_quote', label: 'Testimonials' },
-  { to: '/commandcentre/analytics', icon: 'monitoring', label: 'Analytics' },
-  { to: '/commandcentre/settings', icon: 'settings', label: 'Settings' },
+  { to: '/admin/commandcentre/overview', icon: 'dashboard', label: 'Overview' },
+  { to: '/admin/commandcentre/homepage', icon: 'home_max', label: 'Homepage' },
+  { to: '/admin/commandcentre/services', icon: 'settings_suggest', label: 'Services' },
+  { to: '/admin/commandcentre/businesses', icon: 'store', label: 'Businesses' },
+  { to: '/admin/commandcentre/pricing', icon: 'payments', label: 'Pricing' },
+  { to: '/admin/commandcentre/testimonials', icon: 'format_quote', label: 'Testimonials' },
+  { to: '/admin/commandcentre/analytics', icon: 'monitoring', label: 'Analytics' },
+  { to: '/admin/commandcentre/settings', icon: 'settings', label: 'Settings' },
 ];
 
 export default function Sidebar() {

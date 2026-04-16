@@ -108,8 +108,8 @@ export default function Analytics() {
 <path d="M0,100 Q10,75 20,60 T40,40 T60,50 T80,20 T100,30 L100,100 L0,100 Z" fill="url(#gradient-blue)" opacity="0.1"></path>
 <defs>
 <lineargradient id="gradient-blue" x1="0%" x2="0%" y1="0%" y2="100%">
-<stop offset="0%" style="stop-color:rgb(59, 130, 246);stop-opacity:1"></stop>
-<stop offset="100%" style="stop-color:rgb(59, 130, 246);stop-opacity:0"></stop>
+<stop offset="0%" style={{ stopColor: 'rgb(59, 130, 246)', stopOpacity: '1' }}></stop>
+<stop offset="100%" style={{ stopColor: 'rgb(59, 130, 246)', stopOpacity: '0' }}></stop>
 </lineargradient>
 </defs>
 </svg>
@@ -228,7 +228,7 @@ export default function Analytics() {
 </div>
 <div className="col-span-12 lg:col-span-5 flex flex-col gap-6">
 <div className="bg-blue-600 rounded-3xl p-8 text-white relative overflow-hidden shadow-xl shadow-blue-500/20">
-<span className="material-symbols-outlined text-6xl absolute -right-4 -bottom-4 opacity-20" data-icon="auto_awesome" style="font-size: 160px;">auto_awesome</span>
+<span className="material-symbols-outlined text-6xl absolute -right-4 -bottom-4 opacity-20" data-icon="auto_awesome" style={{ fontSize: '160px' }}>auto_awesome</span>
 <h4 className="text-xl font-black mb-2">Smart Insights</h4>
 <p className="text-blue-100 text-sm mb-6 leading-relaxed">Your conversion rate on Enterprise tier is 12% higher than last month. Consider increasing ad spend for this segment.</p>
 <button className="px-6 py-2 bg-white text-blue-600 text-sm font-bold rounded-xl hover:shadow-lg transition-all">Review Suggestions</button>
