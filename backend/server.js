@@ -6,6 +6,7 @@ const cors = require("cors");
 
 const connectDB = require("./config/mongodb");   
 const authRoutes = require("./routes/authRoutes");
+const serviceRoutes = require("./routes/serviceRoutes")
 
 const app = express();
 
@@ -18,6 +19,7 @@ connectDB();  // ✅ clean call
 
 // Routes
 app.use("/auth", authRoutes);
+app.use("/services" , serviceRoutes);
 
 // Server
 const PORT = process.env.PORT || 5000;

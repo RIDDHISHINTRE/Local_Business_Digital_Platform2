@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Auth from "./pages/Auth";
 import VerifyEmail from "./pages/VerifyEmail";
 import AdminDashboard from "./pages/AdminDashboard";
 import BusinessSetupForm from "./pages/BusinessSetupForm";
@@ -15,17 +14,21 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LocalBoostHomepage />} />
-        <Route path="/auth" element={<Auth />} />
         <Route path="/verify-email/:token" element={<VerifyEmail />} />
+
+        {/* ✅ ADMIN ROUTES */}
+        <Route path="/admin/:tab" element={<AdminDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
 
-        {/* New Routes */}
+        {/* OTHER */}
         <Route path="/sign-in" element={<SignInSignUp />} />
-        <Route path="/service-detail" element={<ServiceDetail />} />
         <Route path="/business-setup" element={<BusinessSetupForm />} />
         <Route path="/business-status" element={<BusinessStatusPending />} />
         <Route path="/flow" element={<LocalBoostFlow />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+
+        {/* SERVICE */}
+        <Route path="/service/:id" element={<ServiceDetail />} />
       </Routes>
     </BrowserRouter>
   );
