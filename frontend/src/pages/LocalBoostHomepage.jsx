@@ -1,12 +1,74 @@
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 export default function LocalBoostHomepage() {
+  const scrollContainerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const getCardWidth = () => {
+     if(scrollContainerRef.current && scrollContainerRef.current.children.length > 0) {
+         return scrollContainerRef.current.children[0].offsetWidth + 32;
+     }
+     return 400; // fallback
+  };
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+        const scrollPos = scrollContainerRef.current.scrollLeft;
+        const index = Math.round(scrollPos / getCardWidth());
+        setActiveIndex(index);
+    }
+  };
+
+  const scrollToDot = (index) => {
+    if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTo({ left: index * getCardWidth(), behavior: 'smooth' });
+    }
+  };
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+        if (scrollContainerRef.current) {
+            const maxScroll = scrollContainerRef.current.scrollWidth - scrollContainerRef.current.clientWidth;
+            if (scrollContainerRef.current.scrollLeft >= maxScroll - 10) {
+                scrollContainerRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                scrollRight();
+            }
+        }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
   return (
     <div className="bg-surface font-body text-on-surface">
-      {/* Screen Content */}
       
-{/* Top Navigation Shell */}
+
+
+
+    <meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LocalBoost | Your Business, Digitally Transformed</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;700&amp;family=Epilogue:wght@700&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+{/*  Top Navigation Shell  */}
 <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#1B2A5E]/80 backdrop-blur-md shadow-sm dark:shadow-none">
 <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
 <span className="font-['Syne'] text-2xl font-extrabold text-[#1B2A5E] dark:text-white">LocalBoost</span>
@@ -22,10 +84,10 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </nav>
-{/* Hero Section */}
+{/*  Hero Section  */}
 <section className="relative pt-32 pb-24 overflow-hidden bg-surface">
 <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-{/* Left Content */}
+{/*  Left Content  */}
 <div className="lg:col-span-7">
 <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-6">
                     All-in-One Digital Platform for Local Businesses
@@ -51,10 +113,10 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </div>
-{/* Right: Dashboard Mockup */}
+{/*  Right: Dashboard Mockup  */}
 <div className="lg:col-span-5 relative">
 <div className="bg-white rounded-[24px] shadow-[0_12px_40px_rgba(27,42,94,0.10)] overflow-hidden border border-primary/5">
-{/* Dashboard Header */}
+{/*  Dashboard Header  */}
 <div className="p-6 bg-primary text-white flex justify-between items-center">
 <div className="flex items-center space-x-3">
 <div className="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center">
@@ -67,7 +129,7 @@ export default function LocalBoostHomepage() {
 </div>
 <span className="material-symbols-outlined text-white/80">notifications</span>
 </div>
-{/* Dashboard Content */}
+{/*  Dashboard Content  */}
 <div className="p-6 space-y-6">
 <div className="grid grid-cols-2 gap-4">
 <div className="p-4 rounded-xl bg-surface-container-low border border-primary/5">
@@ -91,7 +153,7 @@ export default function LocalBoostHomepage() {
 <p className="text-[10px] text-outline">Up to date</p>
 </div>
 </div>
-{/* Status Bar */}
+{/*  Status Bar  */}
 <div className="bg-tertiary-fixed/20 p-4 rounded-xl flex items-center justify-between">
 <div className="flex items-center space-x-3">
 <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></div>
@@ -101,12 +163,12 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </div>
-{/* Decoy element to break grid symmetry */}
+{/*  Decoy element to break grid symmetry  */}
 <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-secondary/10 rounded-full blur-3xl -z-10"></div>
 </div>
 </div>
 </section>
-{/* Stats Strip */}
+{/*  Stats Strip  */}
 <section className="bg-primary-container py-16">
 <div className="max-w-7xl mx-auto px-8">
 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -129,7 +191,7 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </section>
-{/* Problem Section */}
+{/*  Problem Section  */}
 <section className="py-32 bg-surface">
 <div className="max-w-7xl mx-auto px-8">
 <div className="mb-20">
@@ -168,7 +230,7 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </section>
-{/* Services Section */}
+{/*  Services Section  */}
 <section className="py-32 bg-surface-container-low">
 <div className="max-w-7xl mx-auto px-8">
 <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
@@ -176,46 +238,84 @@ export default function LocalBoostHomepage() {
 <p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">Our Services</p>
 <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary">Everything You Need to Grow Online</h2>
 </div>
-<button className="bg-primary text-white px-8 py-4 rounded-[10px] font-bold hover:opacity-90 transition-all shadow-xl">View All Services</button>
 </div>
-<div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-<div className="bg-white p-8 rounded-[32px] shadow-sm border border-primary/5">
-<div className="aspect-video mb-8 overflow-hidden rounded-2xl bg-slate-100">
-<img className="w-full h-full object-cover" data-alt="Modern clean laptop displaying a sleek business website builder interface with drag and drop elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiQz_0kzxS7y__cEk_x9OGip8jpSpSEa0ZkZEC_0FFrWk4U-wX_f-YUhCGISifsIAQPjpCmA5BgTUOFrbLY7IiA8i4W2oJ6tTxcp5iGmkyKEMZQ-QBDhKPwytlz6N1B663B9-AVzTPI4H5FqsEiEbR0nYwJkuKdqe9iXx972ksR-1y5F8ZwIH2PsEeRJoekXiAgcgkRTtJQuIcVRKXVGEAxZiNE3KxVq-WANKHYdQkKZsJBDkq9oj5t81paggLjSJLkJzo_kebB0"/>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+{/*  Website Builder  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="language">language</span>
 </div>
-<h4 className="text-2xl font-bold text-primary mb-4">Website Builder</h4>
-<p className="text-on-surface-variant mb-6">Create a stunning, SEO-optimized website in minutes with zero coding skills required.</p>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Website Builder</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Create a stunning, SEO-optimized website in minutes with zero coding skills required. Fully responsive and ready to sell.</p>
 <div className="flex items-center text-secondary font-bold cursor-pointer group">
-<span>Learn More</span>
-<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
 </div>
 </div>
-<div className="bg-white p-8 rounded-[32px] shadow-sm border border-primary/5">
-<div className="aspect-video mb-8 overflow-hidden rounded-2xl bg-slate-100">
-<img className="w-full h-full object-cover" data-alt="Digital marketing manager organizing social media posts on a grid of various smartphone screens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcErdFAF2EjkzHXAjhKovkPakR0pSi1mPfQfXdwnlgG4yR5tHPKrZPXam0VkTrEdQd12LFzBolSNeelj6j1JmZu1BLVLzeR4UuBWDzYHBDPvPKV5xUYpmlz0EgPjDu9CkC9grf74tNuHloWprC4zTNKDxm_jlQrdK5u-5Eij0i9elYvcNfz6dX_YcesCFwer6PWaJz-OMx6RL1HVIw5NWEDeu_teaJjpUPGbCrtXhOVRSWBCyeE53L0d30Boi8_AV6pMQ3JXafGW8"/>
+{/*  Social Media Setup  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="share">share</span>
 </div>
-<h4 className="text-2xl font-bold text-primary mb-4">Social Media Setup</h4>
-<p className="text-on-surface-variant mb-6">Get your profiles optimized and automated. Reach your local community where they spend time.</p>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Social Media Setup</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Get your profiles optimized and automated. Reach your local community where they spend time most.</p>
 <div className="flex items-center text-secondary font-bold cursor-pointer group">
-<span>Learn More</span>
-<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
 </div>
 </div>
-<div className="bg-white p-8 rounded-[32px] shadow-sm border border-primary/5">
-<div className="aspect-video mb-8 overflow-hidden rounded-2xl bg-slate-100">
-<img className="w-full h-full object-cover" data-alt="High-quality printed business cards and branding materials arranged on a designer wooden desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWfurD1kNYHacAd7xbTcSK6e8b6bYwaKr7eSYhjCn_2ZkElQEDnwOqvcClG2vXkSYvoMi_sBW7OhcVVmKtM_jHhrz-SgXvTfbeMN5RfiyCPI4PlEkWSaFIDPRq-UWztDWsWPY37Y7DIRHxvZSSUgZmtjN8euIcuC5jKEXuzwrhXy0SB0_oeZg6bsb559AjOdCKOIZtfAZaIoFAI5JaDM3zKS0vDTG8gLvnU81cwm6lTwqE21I1X6X-3BxXUj9JHd7FVS9XqJrBW8E"/>
+{/*  Print & Branding  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="print">print</span>
 </div>
-<h4 className="text-2xl font-bold text-primary mb-4">Print &amp; Branding</h4>
-<p className="text-on-surface-variant mb-6">Professional logos, business cards, and flyers that match your digital identity perfectly.</p>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Print &amp; Branding</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Professional logos, business cards, and flyers that match your digital identity perfectly for a unified look.</p>
 <div className="flex items-center text-secondary font-bold cursor-pointer group">
-<span>Learn More</span>
-<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+{/*  GST Registration  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
+</div>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">GST Registration</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Navigate the complexities of business compliance with expert-led registration and filing services.</p>
+<div className="flex items-center text-secondary font-bold cursor-pointer group">
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+{/*  Inventory Suite  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Inventory Suite</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Smart stock management that keeps track of every item, ensuring you never miss a sale or overstock.</p>
+<div className="flex items-center text-secondary font-bold cursor-pointer group">
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+{/*  Ad Performance  */}
+<div className="bg-white p-10 rounded-[32px] shadow-sm border border-primary/5 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+<div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
+<span className="material-symbols-outlined text-primary text-3xl" data-icon="trending_up">trending_up</span>
+</div>
+<h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Ad Performance</h4>
+<p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Data-driven marketing campaigns that maximize your ROI by targeting the right customers at the right time.</p>
+<div className="flex items-center text-secondary font-bold cursor-pointer group">
+<span className="text-sm">Read more</span>
+<span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
 </div>
 </div>
 </div>
 </div>
 </section>
-{/* How It Works (Vertical Timeline) */}
+{/*  How It Works (Vertical Timeline)  */}
 <section className="py-32 bg-surface">
 <div className="max-w-7xl mx-auto px-8">
 <div className="text-center mb-24">
@@ -223,10 +323,10 @@ export default function LocalBoostHomepage() {
 <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary">From Offline to Online in 72 Hours</h2>
 </div>
 <div className="relative max-w-4xl mx-auto">
-{/* Vertical Line */}
+{/*  Vertical Line  */}
 <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px bg-primary/10 -translate-x-1/2"></div>
 <div className="space-y-32">
-{/* Step 1 */}
+{/*  Step 1  */}
 <div className="relative flex flex-col md:flex-row items-start md:items-center">
 <div className="md:w-1/2 md:pr-24 text-left md:text-right order-2 md:order-1 mt-8 md:mt-0">
 <h4 className="text-2xl font-bold text-primary mb-4">Day 1: Sign Up</h4>
@@ -237,7 +337,7 @@ export default function LocalBoostHomepage() {
 </div>
 <div className="md:w-1/2 md:pl-24 order-3"></div>
 </div>
-{/* Step 2 */}
+{/*  Step 2  */}
 <div className="relative flex flex-col md:flex-row items-start md:items-center">
 <div className="md:w-1/2 md:pr-24 order-2 md:order-1 mt-8 md:mt-0"></div>
 <div className="absolute left-8 md:left-1/2 -translate-x-1/2 w-16 h-16 bg-white border-4 border-secondary rounded-full flex items-center justify-center z-10 order-1">
@@ -248,7 +348,7 @@ export default function LocalBoostHomepage() {
 <p className="text-on-surface-variant">Our AI engines build your site and sync your social handles while you approve the branding mockups.</p>
 </div>
 </div>
-{/* Step 3 */}
+{/*  Step 3  */}
 <div className="relative flex flex-col md:flex-row items-start md:items-center">
 <div className="md:w-1/2 md:pr-24 text-left md:text-right order-2 md:order-1 mt-8 md:mt-0">
 <h4 className="text-2xl font-bold text-primary mb-4">Day 3: Launch</h4>
@@ -263,7 +363,271 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </section>
-{/* USP & Proof Section */}
+{/*  Real Results (Carousel Section)  */}
+<section className="py-[128px] bg-surface overflow-hidden">
+<div className="max-w-7xl mx-auto px-8">
+<div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
+<div className="max-w-xl">
+<p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">REAL RESULTS</p>
+<h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary mb-4">What Our Clients Achieved</h2>
+<p className="text-on-surface-variant font-medium">Real impact for local vendors across India.</p>
+</div>
+<div className="flex space-x-4 mt-8 md:mt-0">
+<button className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"  onClick={scrollLeft}><span className="material-symbols-outlined">arrow_back</span></button>
+<button className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300"  onClick={scrollRight}><span className="material-symbols-outlined">arrow_forward</span></button>
+</div>
+</div>
+<div className="flex gap-8 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-12" id="results-carousel" ref={scrollContainerRef} onScroll={handleScroll} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+{/*  Card 1  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Laptop mockup showing tea business website" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbtifRFxfXXLO6GH2FmEe5tct-lqz5h1doCGJbPaI0ma3ZtMT-xZoB314xF61_JvOtp63G8c6RGZqZkztRHYa1zUM6oIqwmeUXpmknm-QdBID1SY5BdfGOPtDwdq3U7YaeLJiMqhaQS_1VqAOnRcb0POx-QeztC2DtnGkKqF1u8sroiJXTPY_iUbNocs7LBNVwr7XL_cwxjzGMmn1XnkIhsL52Pkp-zssTJNR7wryYEwpskLcS183x512RItTizEiFKgwzaJzcHJQ"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Website Builder</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Rajesh Sharma" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4GlmYgNpRbnXNVshodGw1w11utZufCnkwX0jvDw4ExmWjBRaKhaMOjNe1DC7BNMgmtpGDwF2-HTJrr8K2YncVfkQv2-1isxYfeQj3PZaPYBJVA7D2Sd4zGnKXmR5tGyLUx2YXON0vZHW0slgPVQX5Xyym-0A1IKC7Kyc5ootODjVP_NOYPKdwpizRinug5RkQir_iazueJy581cvLo2Vpq3kJ6g1XXXA4_W60QKQa00yeP88z5gIsQJ4yIi9sQ4dBE6Jk8K6nyVY"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Rajesh Sharma</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Sharma Chai Stall</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Expand reach beyond physical stall</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">Custom E-commerce Site</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"I get calls from the next town! My business has changed forever."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">↑ 40% more calls</span>
+</div>
+</div>
+</div>
+</div>
+{/*  Card 2  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Branding flatlay" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB13YwVvavjeEAIox95WNOTZqpicpFyymjBmQe47bTttq6Z0IhG2v-ju0euNlhbMZWr-i3Xb7ebeKeGNR3lN-5iIUUItrzv0_8mgS_vkhpbSAZPQFZIfuq2Oe1SYJ3jegM4aXtqdUHTP5KA622rNUkSrupb_G2oLlRCYT5Hgp-gPMSJlCe3_sEa6mHq4czYwuRLHB2J6VpWy6_8rWEOIWk6rZKYX31TC5TP-JilgPZ1VidqT-ZMJQiuI98V1dOv3UN3bcoF48NkTS8"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Print &amp; Branding</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Priya Mehta" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIY3fbfoowCzfSV3ZmpSdtdoWdywf-wewejT_6ipZ9AMwBEzIhrAaFwg5U7XgcdZAXVbxCHfss251NxPR41UB4D9sZs8lOL5LW_7RUuQw7VWV0118YJSo7lFYve1Z5HIzGKyWyLOJYmm1pEPLGV1Rh-c07lOygUDNZmUkHmxXjK0cKW2d16YGLsmwjMqowTu22Vn2hr3zrrCVWTnKtGl9iExt2zrVMoKnOaeGpE_pPDRMNcGdutorwpy1x5A4eI7mibVtYSUASZ8A"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Priya Mehta</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Priya's Pickles</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Create a premium market presence</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">New Identity &amp; Packaging</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Sales at the local market doubled once we launched the new look."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">↑ 2x sales</span>
+</div>
+</div>
+</div>
+</div>
+{/*  Card 3  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Compliance documents on table" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJY0CdCWEWPhfkj2sDtDQr5tuLQ9R_DbHk5pjqiztSaG60HE-qtpnEXGDgIqZofwCZinb3w4ZVtO3uK14HknbckDcNmRMbf3DFXO7E5RUWGxdkw16cpWIiW1PbmcsFCXyvE6bkZ4R0701fZLhFuPFLrsbMHCJq4yh5n11LYW0aHooZFDh86yhrIqF6vj1g71WazzlIgcuf10ZXAYRQiRBhKuzv4noc9sl-2gj3pBDwW2fNamvg-olvM-5lW7lT2ocaqQP-xrCEDMk"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">GST Registration</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Suresh Patil" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gBpx2Agerd-vWGJpyFg_Q4J6MqYuDRX1a6z3K_3rRLSFllTlLwDnq6td1JGOgcFdMJ47xgoMIUU8nlwalGSpECaynFbbttV4XF0dFqevyszEE0OfuCVmUPBLkUaB3a8uul9Upkw9S3LnaYG6PW9tjMciQR4i921rRRw-PDnm9I9xpLZzygASYPSmgudp0WziEN2_tq5bmTnMaNZkqXweOaA5c3AuXxfZZAtPfHZPonDC2sUrMjZ6eboKqK4VQ4SAf5ijoftcyI0"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Suresh Patil</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Patil Hardware</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Sell on major online marketplaces</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">GST &amp; Marketplace Setup</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Sorted it in two days. I am now selling across the country."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">Selling on 3 platforms</span>
+</div>
+</div>
+</div>
+</div>
+{/*  Card 4  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Phone showing food social media" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzSKyXq9SHXxitpIsJE55RCXbhMrkU5boNAwg8c5DR3X3Uyre7RBJe7c7ILA_u5lCBe3yS8HATUI_phPlMAAm9s-XzoHsyr9TrK5Msvclf9ck606_3-PYCzr-Ul8tDBXwkF9yv72ZOeBJXdGIHVg2R3_yhuWTeEmDtB1osoC91x9w6mOjlQ-H0FM7qoU_LpABrfc3nG7pxCefwtIz2EbH9M6KTip3-Vka97FdLxT5VaM276igZVO5z0gaJ8_3UI5Ow_yK5JPhl1ic"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Social Media</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Anita Joshi" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-QTzERwdRHQJUgdTyXAXr4ap_BWArScck64Z3V9BMiT8J2yelxqDKBqjO0P3kkPc_hcgsmhigw75klP97CrtccnbC42tXt4myCg5Zs-0xTaru4lkw2ReEE-1tToISRVBhAy7c-VHra6KQyyKD1s0ZD3B3TcsJ9Bpp1vERNceuxcqCCItIF1bv6OYtdxZ2iA0ru9XQtRUaVeVlmPhGD7bsRZ-q7hgTyBkWMiNfa65C9H2bt6izW0Vp1UvwVQ_6Objrq9QQmyOydSY"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Anita Joshi</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Anita's Tiffin</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Build a loyal community online</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">Full Social Automation</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Fully booked! Our daily stories bring in orders every morning."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">↑ 800 followers</span>
+</div>
+</div>
+</div>
+</div>
+{/*  Card 5  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Auto repair shop marketing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_bRk_oPcWroVWKbtCjRP9YeMk3BxAIU20juT3451cP8jO_ecwSbNW1z_OJKMsDmkYRqsdSnofmU7EG9eqdagjJYweoOT44p1u8JcMaKAGgG5gQsqwK8R7xks_L13QoLz-49jHtlYIGAJafr_6jyvlFWpR21cq3w2l2W1QtGcTMqOikHlzsNhGS8Mp8Dg-2jR_VE-Su4HSRCHN3M6vwl1mEM22MrKg7-YOBCndpqJIbOTA5-4OBFHOLy48akA13tVnr6-mxWUypHY"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Digital Marketing</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Vikram Nair" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxFFlRnJcvXb250t3qr68sEczC7gmmU8YeKkWvF2b6yixbEme03cgWpBWO6H49NvI8G4XRu0Nw5pMLtCY4e022BW8s2TtAK96_GfCioFnYBKCebyIskhtcKet5ckl1OjbkSPdEthssa0ouvMq0uKPDYgVC-VuLa1n_2Y_lUYPuzt63KzWNg4LFX1Fcs4sNBLyxP3ann4FX7tHyg5cjpHTQHW2MUkA821ewpY5crWZew8GHRE3EsdcST1paywFNsz4eZF5nS3xVGS8"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Vikram Nair</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Nair Auto Repair</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Increase high-value service bookings</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">Local Search Ads</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"I had to hire a helper just to handle the new bookings coming in."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">↑ 60% more bookings</span>
+</div>
+</div>
+</div>
+</div>
+{/*  Card 6  */}
+<div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+<div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+<img alt="Saree business online" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVOIX1LAcTzjqSoi0KtiGJAKCmx4KtmxgQCpIgytMUEBOcxmCbmySPEPv9IdQ5L9fZZXSOcsaARfRMWChk7_plMdMYSVo7-GzFUjc5W_3Va8p6KPrvo-S_xjcG11osEM5PelRylXBQobbxUP5apdF0VE0KNb956eQASPQBf8TnFASlzYypB3OT3jAhAlkt-AyGF64XaSzSm_Cb3ge3jnAyy7HbcMhPRtXOebTFwlNDLi-x0B58xFDmQv3-3jLrO51gbiKEImoCkaI"/>
+<div className="absolute top-4 left-4 flex gap-2">
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Website + Branding</span>
+<span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+<span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
+                            </span>
+</div>
+</div>
+<div className="p-8 space-y-6 flex-grow">
+<div className="flex items-center space-x-4">
+<div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Sunita Rao" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBZ2APyNqstf4s2bvUj-ek5evbvERsz_aQ09JO6TcTuZvrJ02eq6iU2QDKqXoo1bZM5VVaWta4gScGGgRDIGxRnDaZdNgizfoKQZwS7kmQKDvoHJ40OSWvHrS_VOUK62Uwoww9ciEsds7C21eM8nt2qoRS7kgPWqpnxhmWpzh_UVL2IvrhRlu_0y79Mmk-I938qc9WgcqgwYAfmEjRgVAjrYJswfl3pPmpjhQ-tS4ZN81lhEGA8nCCq1hbyMUkERHsmTy_FSbOams"/>
+</div>
+<div>
+<div className="flex items-center">
+<p className="font-bold text-primary">Sunita Rao</p>
+<div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+</div>
+<p className="text-xs text-on-surface-variant font-medium">Sunita Sarees</p>
+</div>
+</div>
+<div className="space-y-2">
+<p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+<p className="text-sm font-medium">Transform traditional store to D2C</p>
+<p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+<p className="text-sm font-bold text-secondary">Storefront + Identity</p>
+</div>
+<div className="bg-surface-container-low p-6 rounded-2xl relative">
+<span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+<p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"First online order in 72 hours. My daughter helps me manage it now."</p>
+<div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+<span className="text-xs font-bold text-secondary">Online in 3 Days</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+{/*  Indicators  */}
+<div className="flex justify-center items-center space-x-2 mt-8">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div
+                key={i}
+                onClick={() => scrollToDot(i)}
+                className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${
+                  activeIndex === i ? 'w-8 bg-primary' : 'w-2 bg-primary/20'
+                }`}
+              ></div>
+            ))}
+          </div>
+        </div>
+</section>
+{/*  USP & Proof Section  */}
 <section className="py-32 bg-primary text-white overflow-hidden">
 <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
 <div>
@@ -334,12 +698,12 @@ export default function LocalBoostHomepage() {
 </div>
 </div>
 </div>
-{/* Abstract floating orb */}
+{/*  Abstract floating orb  */}
 <div className="absolute -top-10 -right-10 w-40 h-40 bg-secondary/30 rounded-full blur-[80px] -z-10"></div>
 </div>
 </div>
 </section>
-{/* CTA Section */}
+{/*  CTA Section  */}
 <section className="py-32 bg-surface">
 <div className="max-w-7xl mx-auto px-8">
 <div className="bg-primary-container rounded-[48px] p-12 lg:p-24 text-center relative overflow-hidden">
@@ -347,17 +711,17 @@ export default function LocalBoostHomepage() {
 <h2 className="font-['Syne'] text-4xl lg:text-6xl font-bold text-white mb-8">Ready to Boost Your Local Legacy?</h2>
 <p className="text-on-primary-container text-xl max-w-2xl mx-auto mb-12">Join the digital revolution. Start your transformation today with no upfront cost or commitments.</p>
 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-<button className="w-full sm:w-auto bg-[#1DB887] text-white px-10 py-5 rounded-[12px] font-bold text-lg hover:scale-105 transition-transform shadow-[0_8px_24px_rgba(29,184,135,0.30)]">Start Free — No Card Needed</button>
-<button className="w-full sm:w-auto bg-transparent border border-white/20 text-white px-10 py-5 rounded-[12px] font-bold text-lg hover:bg-white/5 transition-colors">Talk to Our Team</button>
+<Link to="/business-setup" className="w-full sm:w-auto bg-[#1DB887] text-white px-10 py-5 rounded-[12px] font-bold text-lg hover:scale-105 transition-transform shadow-[0_8px_24px_rgba(29,184,135,0.30)]">Start Free — No Card Needed</Link>
+<Link to="/business-setup" className="w-full sm:w-auto bg-transparent border border-white/20 text-white px-10 py-5 rounded-[12px] font-bold text-lg hover:bg-white/5 transition-colors">Talk to Our Team</Link>
 </div>
 </div>
-{/* Background decorative shapes */}
+{/*  Background decorative shapes  */}
 <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
 <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#1DB887]/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
 </div>
 </div>
 </section>
-{/* Footer */}
+{/*  Footer  */}
 <footer className="bg-slate-50 dark:bg-[#0F1A3D] w-full py-12 px-8 border-t border-[#1B2A5E]/10">
 <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
 <div className="flex flex-col items-center md:items-start space-y-4">
