@@ -62,28 +62,25 @@ export default function AdminDashboard() {
     fetchServices();
   };
 
-  // ✅ LOGOUT FUNCTION
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/sign-in");
+    navigate("/");
   };
 
   const tabs = ["overview", "verification", "services", "users", "settings"];
 
   return (
     <div className="bg-surface font-body text-on-background antialiased">
-
+      
       {/* SIDEBAR */}
       <aside className="h-screen w-72 fixed left-0 top-0 bg-[#0F1A3D] text-white flex flex-col justify-between py-10 px-6">
-
-        {/* TOP CONTENT */}
+        
         <div>
           {user && (
             <div className="mb-10 flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-[#1DB887] flex items-center justify-center font-bold text-lg">
                 {user.name?.charAt(0).toUpperCase()}
               </div>
-
               <div>
                 <p className="text-md text-slate-300">Hello,</p>
                 <p className="font-semibold">{user.name}</p>
@@ -91,7 +88,7 @@ export default function AdminDashboard() {
             </div>
           )}
 
-          <span className="font-black text-[#1DB887] text-2xl mb-10 block">
+          <span className="font-black text-[#1DB887] text-2xl mb-6 block">
             LocalBoost
           </span>
 
@@ -109,13 +106,20 @@ export default function AdminDashboard() {
                 {t.toUpperCase()}
               </button>
             ))}
+
+            {/* 🚀 LINK TO COMMAND CENTRE */}
+            <button
+              onClick={() => navigate("/admin/commandcentre")}
+              className="w-full text-left px-4 py-3 rounded-lg text-yellow-400 hover:bg-white/5"
+            >
+              COMMAND CENTRE 🚀
+            </button>
           </nav>
         </div>
 
-        {/* 🔻 LOGOUT BUTTON */}
         <button
           onClick={handleLogout}
-          className="w-full bg-red-500 hover:bg-red-600 transition text-white px-4 py-3 rounded-lg font-semibold"
+          className="w-full bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg font-semibold"
         >
           Logout
         </button>
@@ -206,8 +210,6 @@ export default function AdminDashboard() {
           </>
         )}
       </main>
-
-      {/* MODAL stays same */}
     </div>
   );
 }
