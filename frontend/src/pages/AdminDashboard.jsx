@@ -247,7 +247,7 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-[#1DB887] bg-[#1DB887]/5 px-2 py-1 rounded-full">+12%</span>
                   </div>
-                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Total Businesses</h3>
+                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Total Businesses</h3>
                   <p className="text-3xl font-black text-primary mt-1 font-['Syne']">120</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
@@ -257,17 +257,17 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-amber-500 bg-amber-500/5 px-2 py-1 rounded-full">4 Urgently</span>
                   </div>
-                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Pending Verification</h3>
+                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Pending Verification</h3>
                   <p className="text-3xl font-black text-primary mt-1 font-['Syne']">6</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600 group-hover:scale-110 transition-transform">
                       <span className="material-symbols-outlined">list_alt</span>
                     </div>
                     <span className="text-[10px] font-black text-blue-500 bg-blue-500/5 px-2 py-1 rounded-full">Active</span>
                   </div>
-                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Active Services</h3>
+                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Active Services</h3>
                   <p className="text-3xl font-black text-primary mt-1 font-['Syne']">24</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
@@ -277,7 +277,7 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-purple-500 bg-purple-500/5 px-2 py-1 rounded-full">842 Total</span>
                   </div>
-                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Emails Sent Today</h3>
+                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Emails Sent Today</h3>
                   <p className="text-3xl font-black text-primary mt-1 font-['Syne']">156</p>
                 </div>
               </div>
@@ -419,6 +419,111 @@ export default function AdminDashboard() {
                     {/*  Decorative pulse  */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
                   </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "verification" && (
+            <div className="space-y-8 animate-in slide-in-from-bottom-4 duration-500">
+              {/* Verification Header & Stats */}
+              <div className="grid grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 flex items-center gap-4">
+                   <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-600">
+                     <span className="material-symbols-outlined">pending_actions</span>
+                   </div>
+                   <div>
+                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Awaiting Review</p>
+                     <p className="text-2xl font-black text-primary font-['Syne']">
+                       {DUMMY_USERS.filter(u => u.status === 'pending').length} Businesses
+                     </p>
+                   </div>
+                </div>
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 flex items-center gap-4">
+                   <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-600">
+                     <span className="material-symbols-outlined">description</span>
+                   </div>
+                   <div>
+                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Docs Uploaded</p>
+                     <p className="text-2xl font-black text-primary font-['Syne']">100% Complete</p>
+                   </div>
+                </div>
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 flex items-center gap-4">
+                   <div className="w-12 h-12 rounded-2xl bg-[#1DB887]/10 flex items-center justify-center text-[#1DB887]">
+                     <span className="material-symbols-outlined">verified</span>
+                   </div>
+                   <div>
+                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Avg. Review Time</p>
+                     <p className="text-2xl font-black text-primary font-['Syne']">4.2 Hours</p>
+                   </div>
+                </div>
+              </div>
+
+              {/* Pending Queue */}
+              <div className="bg-white rounded-[32px] border border-primary/5 shadow-sm overflow-hidden">
+                <div className="px-8 py-6 border-b border-primary/5 flex justify-between items-center bg-slate-50/30">
+                  <h3 className="font-['Syne'] text-xl font-bold text-primary">Verification Queue</h3>
+                  <div className="flex gap-2">
+                    <button className="px-4 py-1.5 bg-white border border-primary/10 rounded-xl text-xs font-bold text-primary/60 hover:bg-slate-50">Bulk Approve</button>
+                    <button className="px-4 py-1.5 bg-white border border-primary/10 rounded-xl text-xs font-bold text-primary/60 hover:bg-slate-50">Sort: Oldest First</button>
+                  </div>
+                </div>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left">
+                    <thead>
+                      <tr className="bg-slate-50/50">
+                        <th className="px-8 py-5 text-[11px] font-black text-primary/40 uppercase tracking-widest">Business</th>
+                        <th className="px-8 py-5 text-[11px] font-black text-primary/40 uppercase tracking-widest">Owner</th>
+                        <th className="px-8 py-5 text-[11px] font-black text-primary/40 uppercase tracking-widest">Submission Date</th>
+                        <th className="px-8 py-5 text-[11px] font-black text-primary/40 uppercase tracking-widest">Trust Score</th>
+                        <th className="px-8 py-5 text-[11px] font-black text-primary/40 uppercase tracking-widest text-right">Verification</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-primary/5">
+                      {DUMMY_USERS.filter(u => u.status === 'pending').map((u) => (
+                        <tr key={u.id} className="hover:bg-slate-50/50 transition-colors">
+                          <td className="px-8 py-6">
+                            <div className="flex items-center gap-4">
+                              <img src={u.avatar} className="w-10 h-10 rounded-xl object-cover" alt="" />
+                              <div>
+                                <p className="text-sm font-bold text-primary">{u.businessName}</p>
+                                <p className="text-[10px] text-primary/40 font-medium">{u.category}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-8 py-6">
+                            <p className="text-sm font-bold text-primary">{u.ownerName}</p>
+                            <p className="text-[10px] text-primary/40">{u.email}</p>
+                          </td>
+                          <td className="px-8 py-6">
+                            <p className="text-sm font-bold text-primary">April 12, 2024</p>
+                            <span className="text-[10px] font-black text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md">Pending docs</span>
+                          </td>
+                          <td className="px-8 py-6">
+                             <div className="flex items-center gap-2">
+                               <div className="w-12 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                                 <div className="bg-[#1DB887] h-full" style={{ width: '85%' }}></div>
+                               </div>
+                               <span className="text-[10px] font-black text-primary/40">85%</span>
+                             </div>
+                          </td>
+                          <td className="px-8 py-6 text-right">
+                             <div className="flex justify-end gap-2">
+                               <button 
+                                 onClick={() => navigate(`/admin/users`)}
+                                 className="px-4 py-2 bg-slate-100 text-primary rounded-xl text-xs font-bold hover:bg-slate-200 transition-all"
+                                >
+                                 View Docs
+                               </button>
+                               <button className="px-4 py-2 bg-[#1DB887] text-white rounded-xl text-xs font-bold hover:scale-105 shadow-lg shadow-[#1DB887]/20 transition-all">
+                                 Approve
+                               </button>
+                             </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
