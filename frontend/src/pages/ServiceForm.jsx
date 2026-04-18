@@ -179,7 +179,7 @@ export default function ServiceForm() {
               <button 
                 type="submit"
                 disabled={loading}
-                className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-lg shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-50"
+                className="px-4 py-2 text-sm font-medium text-white bg-[#1DB887] border border-transparent rounded-lg shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DB887] transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-50"
               >
                 <span className="material-symbols-outlined text-[18px]">save</span>
                 {loading ? "Saving..." : "Save Changes"}
@@ -603,7 +603,7 @@ export default function ServiceForm() {
             <button 
               type="submit" 
               disabled={loading}
-              className="px-6 py-2.5 text-sm font-bold text-white bg-teal-600 hover:bg-teal-700 border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-50"
+              className="px-6 py-2.5 text-sm font-bold text-white bg-[#1DB887] hover:opacity-90 border border-transparent rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1DB887] transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-50"
             >
               <span className="material-symbols-outlined text-[20px]">rocket_launch</span>
               {loading ? "Publishing..." : "Publish Service"}

@@ -23,12 +23,11 @@ export default function Businesses() {
   return (
     <div className="p-8 min-h-full">
       {/* Stat Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
         {[
           { label: 'Total Businesses', value: '1,402', delta: '+12%', up: true, icon: 'store', color: 'text-blue-600 bg-blue-50' },
           { label: 'Total Revenue', value: '$1.2M', delta: '+8.4%', up: true, icon: 'payments', color: 'text-[#1DB887] bg-[#1DB887]/10' },
           { label: 'Active Shops', value: '1,108', delta: 'Stable', up: null, icon: 'storefront', color: 'text-orange-600 bg-orange-50' },
-          { label: 'Avg. Retention', value: '94.2%', delta: '-0.5%', up: false, icon: 'analytics', color: 'text-purple-600 bg-purple-50' },
         ].map((stat) => (
           <div key={stat.label} className="bg-surface-container-lowest rounded-[20px] p-6 shadow-[0_12px_40px_rgba(27,42,94,0.08)] border border-primary/5 flex justify-between items-start">
             <div>

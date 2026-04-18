@@ -5,7 +5,6 @@ const navItems = [
   { to: '/admin/commandcentre/businesses', icon: 'store', label: 'Businesses' },
   { to: '/admin/commandcentre/testimonials', icon: 'format_quote', label: 'Testimonials' },
   { to: '/admin/commandcentre/emailing', icon: 'mail', label: 'Emailing' },
-  { to: '/admin/commandcentre/settings', icon: 'settings', label: 'Settings' },
 ];
 
 export default function Sidebar() {

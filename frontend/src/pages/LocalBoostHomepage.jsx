@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { TESTIMONIALS } from '../data/testimonials';
+
 
 export default function LocalBoostHomepage() {
   const scrollContainerRef = useRef(null);
@@ -378,244 +380,50 @@ export default function LocalBoostHomepage() {
             </div>
           </div>
           <div className="flex gap-8 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-12" id="results-carousel" ref={scrollContainerRef} onScroll={handleScroll} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-            {/*  Card 1  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Laptop mockup showing tea business website" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbtifRFxfXXLO6GH2FmEe5tct-lqz5h1doCGJbPaI0ma3ZtMT-xZoB314xF61_JvOtp63G8c6RGZqZkztRHYa1zUM6oIqwmeUXpmknm-QdBID1SY5BdfGOPtDwdq3U7YaeLJiMqhaQS_1VqAOnRcb0POx-QeztC2DtnGkKqF1u8sroiJXTPY_iUbNocs7LBNVwr7XL_cwxjzGMmn1XnkIhsL52Pkp-zssTJNR7wryYEwpskLcS183x512RItTizEiFKgwzaJzcHJQ" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Website Builder</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Rajesh Sharma" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4GlmYgNpRbnXNVshodGw1w11utZufCnkwX0jvDw4ExmWjBRaKhaMOjNe1DC7BNMgmtpGDwF2-HTJrr8K2YncVfkQv2-1isxYfeQj3PZaPYBJVA7D2Sd4zGnKXmR5tGyLUx2YXON0vZHW0slgPVQX5Xyym-0A1IKC7Kyc5ootODjVP_NOYPKdwpizRinug5RkQir_iazueJy581cvLo2Vpq3kJ6g1XXXA4_W60QKQa00yeP88z5gIsQJ4yIi9sQ4dBE6Jk8K6nyVY" />
+            {TESTIMONIALS.filter(t => t.status === 'published').map((t) => (
+              <div key={t.id} className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
+                <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
+                  <img alt={t.name} className="w-full h-full object-cover" src={t.thumbnail} />
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">{t.category}</span>
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
+                      <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> {t.rating.toFixed(1)}
+                    </span>
                   </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Rajesh Sharma</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+                </div>
+                <div className="p-8 space-y-6 flex-grow">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
+                      <img alt={t.name} className="w-full h-full object-cover" src={t.avatar} />
                     </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Sharma Chai Stall</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Expand reach beyond physical stall</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">Custom E-commerce Site</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"I get calls from the next town! My business has changed forever."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">↑ 40% more calls</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/*  Card 2  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Branding flatlay" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB13YwVvavjeEAIox95WNOTZqpicpFyymjBmQe47bTttq6Z0IhG2v-ju0euNlhbMZWr-i3Xb7ebeKeGNR3lN-5iIUUItrzv0_8mgS_vkhpbSAZPQFZIfuq2Oe1SYJ3jegM4aXtqdUHTP5KA622rNUkSrupb_G2oLlRCYT5Hgp-gPMSJlCe3_sEa6mHq4czYwuRLHB2J6VpWy6_8rWEOIWk6rZKYX31TC5TP-JilgPZ1VidqT-ZMJQiuI98V1dOv3UN3bcoF48NkTS8" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Print &amp; Branding</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Priya Mehta" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIY3fbfoowCzfSV3ZmpSdtdoWdywf-wewejT_6ipZ9AMwBEzIhrAaFwg5U7XgcdZAXVbxCHfss251NxPR41UB4D9sZs8lOL5LW_7RUuQw7VWV0118YJSo7lFYve1Z5HIzGKyWyLOJYmm1pEPLGV1Rh-c07lOygUDNZmUkHmxXjK0cKW2d16YGLsmwjMqowTu22Vn2hr3zrrCVWTnKtGl9iExt2zrVMoKnOaeGpE_pPDRMNcGdutorwpy1x5A4eI7mibVtYSUASZ8A" />
-                  </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Priya Mehta</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+                    <div>
+                      <div className="flex items-center">
+                        <p className="font-bold text-primary">{t.name}</p>
+                        <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+                      </div>
+                      <p className="text-xs text-on-surface-variant font-medium">{t.business}</p>
                     </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Priya's Pickles</p>
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Create a premium market presence</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">New Identity &amp; Packaging</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Sales at the local market doubled once we launched the new look."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">↑ 2x sales</span>
+                  <div className="space-y-2">
+                    <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
+                    <p className="text-sm font-medium">{t.goal}</p>
+                    <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
+                    <p className="text-sm font-bold text-secondary">{t.delivered}</p>
                   </div>
-                </div>
-              </div>
-            </div>
-            {/*  Card 3  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Compliance documents on table" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJY0CdCWEWPhfkj2sDtDQr5tuLQ9R_DbHk5pjqiztSaG60HE-qtpnEXGDgIqZofwCZinb3w4ZVtO3uK14HknbckDcNmRMbf3DFXO7E5RUWGxdkw16cpWIiW1PbmcsFCXyvE6bkZ4R0701fZLhFuPFLrsbMHCJq4yh5n11LYW0aHooZFDh86yhrIqF6vj1g71WazzlIgcuf10ZXAYRQiRBhKuzv4noc9sl-2gj3pBDwW2fNamvg-olvM-5lW7lT2ocaqQP-xrCEDMk" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">GST Registration</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Suresh Patil" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1gBpx2Agerd-vWGJpyFg_Q4J6MqYuDRX1a6z3K_3rRLSFllTlLwDnq6td1JGOgcFdMJ47xgoMIUU8nlwalGSpECaynFbbttV4XF0dFqevyszEE0OfuCVmUPBLkUaB3a8uul9Upkw9S3LnaYG6PW9tjMciQR4i921rRRw-PDnm9I9xpLZzygASYPSmgudp0WziEN2_tq5bmTnMaNZkqXweOaA5c3AuXxfZZAtPfHZPonDC2sUrMjZ6eboKqK4VQ4SAf5ijoftcyI0" />
-                  </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Suresh Patil</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
+                  <div className="bg-surface-container-low p-6 rounded-2xl relative">
+                    <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
+                    <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">{t.quote}</p>
+                    <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
+                      <span className="text-xs font-bold text-secondary">{t.impact}</span>
                     </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Patil Hardware</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Sell on major online marketplaces</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">GST &amp; Marketplace Setup</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Sorted it in two days. I am now selling across the country."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">Selling on 3 platforms</span>
                   </div>
                 </div>
               </div>
-            </div>
-            {/*  Card 4  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Phone showing food social media" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzSKyXq9SHXxitpIsJE55RCXbhMrkU5boNAwg8c5DR3X3Uyre7RBJe7c7ILA_u5lCBe3yS8HATUI_phPlMAAm9s-XzoHsyr9TrK5Msvclf9ck606_3-PYCzr-Ul8tDBXwkF9yv72ZOeBJXdGIHVg2R3_yhuWTeEmDtB1osoC91x9w6mOjlQ-H0FM7qoU_LpABrfc3nG7pxCefwtIz2EbH9M6KTip3-Vka97FdLxT5VaM276igZVO5z0gaJ8_3UI5Ow_yK5JPhl1ic" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Social Media</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Anita Joshi" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-QTzERwdRHQJUgdTyXAXr4ap_BWArScck64Z3V9BMiT8J2yelxqDKBqjO0P3kkPc_hcgsmhigw75klP97CrtccnbC42tXt4myCg5Zs-0xTaru4lkw2ReEE-1tToISRVBhAy7c-VHra6KQyyKD1s0ZD3B3TcsJ9Bpp1vERNceuxcqCCItIF1bv6OYtdxZ2iA0ru9XQtRUaVeVlmPhGD7bsRZ-q7hgTyBkWMiNfa65C9H2bt6izW0Vp1UvwVQ_6Objrq9QQmyOydSY" />
-                  </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Anita Joshi</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
-                    </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Anita's Tiffin</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Build a loyal community online</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">Full Social Automation</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"Fully booked! Our daily stories bring in orders every morning."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">↑ 800 followers</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/*  Card 5  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Auto repair shop marketing" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_bRk_oPcWroVWKbtCjRP9YeMk3BxAIU20juT3451cP8jO_ecwSbNW1z_OJKMsDmkYRqsdSnofmU7EG9eqdagjJYweoOT44p1u8JcMaKAGgG5gQsqwK8R7xks_L13QoLz-49jHtlYIGAJafr_6jyvlFWpR21cq3w2l2W1QtGcTMqOikHlzsNhGS8Mp8Dg-2jR_VE-Su4HSRCHN3M6vwl1mEM22MrKg7-YOBCndpqJIbOTA5-4OBFHOLy48akA13tVnr6-mxWUypHY" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Digital Marketing</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Vikram Nair" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxFFlRnJcvXb250t3qr68sEczC7gmmU8YeKkWvF2b6yixbEme03cgWpBWO6H49NvI8G4XRu0Nw5pMLtCY4e022BW8s2TtAK96_GfCioFnYBKCebyIskhtcKet5ckl1OjbkSPdEthssa0ouvMq0uKPDYgVC-VuLa1n_2Y_lUYPuzt63KzWNg4LFX1Fcs4sNBLyxP3ann4FX7tHyg5cjpHTQHW2MUkA821ewpY5crWZew8GHRE3EsdcST1paywFNsz4eZF5nS3xVGS8" />
-                  </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Vikram Nair</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
-                    </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Nair Auto Repair</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Increase high-value service bookings</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">Local Search Ads</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"I had to hire a helper just to handle the new bookings coming in."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">↑ 60% more bookings</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/*  Card 6  */}
-            <div className="min-w-[400px] bg-white rounded-[32px] border border-primary/5 shadow-sm hover:-translate-y-2 transition-transform duration-300 snap-start flex flex-col h-full">
-              <div className="h-[200px] relative overflow-hidden rounded-t-[32px]">
-                <img alt="Saree business online" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVOIX1LAcTzjqSoi0KtiGJAKCmx4KtmxgQCpIgytMUEBOcxmCbmySPEPv9IdQ5L9fZZXSOcsaARfRMWChk7_plMdMYSVo7-GzFUjc5W_3Va8p6KPrvo-S_xjcG11osEM5PelRylXBQobbxUP5apdF0VE0KNb956eQASPQBf8TnFASlzYypB3OT3jAhAlkt-AyGF64XaSzSm_Cb3ge3jnAyy7HbcMhPRtXOebTFwlNDLi-x0B58xFDmQv3-3jLrO51gbiKEImoCkaI" />
-                <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-primary uppercase">Website + Branding</span>
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur rounded-full text-[10px] font-bold text-secondary flex items-center">
-                    <span className="material-symbols-outlined text-[12px] mr-1" style={{ fontVariationSettings: "'FILL' 1" }}>star</span> 5.0
-                  </span>
-                </div>
-              </div>
-              <div className="p-8 space-y-6 flex-grow">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden">
-                    <img alt="Sunita Rao" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBZ2APyNqstf4s2bvUj-ek5evbvERsz_aQ09JO6TcTuZvrJ02eq6iU2QDKqXoo1bZM5VVaWta4gScGGgRDIGxRnDaZdNgizfoKQZwS7kmQKDvoHJ40OSWvHrS_VOUK62Uwoww9ciEsds7C21eM8nt2qoRS7kgPWqpnxhmWpzh_UVL2IvrhRlu_0y79Mmk-I938qc9WgcqgwYAfmEjRgVAjrYJswfl3pPmpjhQ-tS4ZN81lhEGA8nCCq1hbyMUkERHsmTy_FSbOams" />
-                  </div>
-                  <div>
-                    <div className="flex items-center">
-                      <p className="font-bold text-primary">Sunita Rao</p>
-                      <div className="w-2 h-2 bg-teal-500 rounded-full ml-2"></div>
-                    </div>
-                    <p className="text-xs text-on-surface-variant font-medium">Sunita Sarees</p>
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-bold text-outline tracking-wider uppercase">THEIR GOAL</p>
-                  <p className="text-sm font-medium">Transform traditional store to D2C</p>
-                  <p className="text-[10px] font-bold text-secondary tracking-wider uppercase pt-2">WHAT WE DELIVERED</p>
-                  <p className="text-sm font-bold text-secondary">Storefront + Identity</p>
-                </div>
-                <div className="bg-surface-container-low p-6 rounded-2xl relative">
-                  <span className="material-symbols-outlined absolute top-4 left-4 text-secondary/20 text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>format_quote</span>
-                  <p className="italic text-sm text-on-surface-variant leading-relaxed relative z-10">"First online order in 72 hours. My daughter helps me manage it now."</p>
-                  <div className="mt-4 inline-flex items-center bg-secondary/10 px-3 py-1 rounded-full">
-                    <span className="text-xs font-bold text-secondary">Online in 3 Days</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
           {/*  Indicators  */}
           <div className="flex justify-center items-center space-x-2 mt-8">
-            {Array.from({ length: 6 }).map((_, i) => (
+            {TESTIMONIALS.filter(t => t.status === 'published').map((_, i) => (
               <div
                 key={i}
                 onClick={() => scrollToDot(i)}

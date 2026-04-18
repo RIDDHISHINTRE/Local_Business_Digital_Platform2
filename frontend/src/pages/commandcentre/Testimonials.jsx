@@ -1,40 +1,5 @@
 import React, { useState } from 'react';
-
-const TESTIMONIALS = [
-  {
-    id: 1,
-    name: 'Sarah Jenkins',
-    role: 'CEO, CreativeFlow',
-    initials: 'SJ',
-    rating: 5,
-    quote: '"The command center has completely transformed how we handle our backend logic. It\'s the most intuitive B2B tool we\'ve used this year."',
-    status: 'published',
-    edited: '2h ago',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC4Is56u9NAQGK9pNlgL5eCaAPXDfQY7r6uSwtYQaiHhBYnyoFWACLL0PLU8BHOdrjVhb0TdjG_ODw6JmLU2RUTVysMxu8sdeQL1nq-HhFQEvChUHYUBeoalRqALtiS-RD7s2vOUCSuA5gHkIFUmoQOZu3lsLSvFsWKie3P6M3Gx1-tuJluThY_RxuXmULmOlauKt8Mn2ey-T1WNW3-3YHZYkcQRoJmNJi-QoZYziogxYuwdaPCbbBAthCgxglzE9xFSVxCT7s2Eqc',
-  },
-  {
-    id: 2,
-    name: 'Marcus Chen',
-    role: 'Founder, CloudScale',
-    initials: 'MC',
-    rating: 4,
-    quote: '"Pricing was a bit complex at first, but the testimonial system itself is rock solid. Our conversion rates improved by 15%."',
-    status: 'hidden',
-    edited: 'Yesterday',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB6Fu8vt93HVMj0ZXJjAMQqeQj82yIjsuWwytnURFaPE-VW__skJTtrd25K6GYmjY9ctep34grmb8c9LG0dzuNwUGzm6c9jTauvjh2GurrgVoU-7lfi_5aSI49cClahGAgbhdvVzTDQ8sTbfbY7Wc8jQqXP4dI6C8afRZ6vn3yndglHB2NLRaKSqqZypF2Bl6hyym5U5hq7__2-bl0vP_4tU5opxZnX0IMRCMxmw8D2hn41j2EIPxXdmBCu11cd7-AgiKswqkdlMSo',
-  },
-  {
-    id: 3,
-    name: 'Elena Rodriguez',
-    role: 'Operations Manager, LogiTech',
-    initials: 'ER',
-    rating: 5,
-    quote: '"Support has been phenomenal. Every time we had a question about the dashboard integration, they were there."',
-    status: 'published',
-    edited: '3 days ago',
-    avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAUzGdMAiOeshY0pRx5ADCMCcGL-3xdLmYCiNPaPtTLe9K92Y21M15KfY5kV8yAijarLBcUtY1_7WUXxHnbqlEubIxzIXD_pYT9u9Vutjnkb7oVAhlrbt-wYSdh04cFPlI7jmWfBbwEh-l_L8jTzKDMCiMlO8l1yvuUSV1JPO-xyULrmLWo2cfdPAYk9s_voI_N8zSCA7_-_xD2IQIShm6DWlEmxpcOP5OqKceg2uyMCiXx2Dh_JsbtCwNM7haI1Hcf6Q_AYbyUa08',
-  },
-];
+import { TESTIMONIALS } from '../../data/testimonials';
 
 function StarRating({ rating }) {
   return (
@@ -105,24 +70,38 @@ export default function Testimonials() {
             key={t.id}
             className={`bg-surface-container-lowest rounded-[20px] p-7 border shadow-[0_12px_40px_rgba(27,42,94,0.08)] transition-all duration-200 hover:shadow-[0_20px_50px_rgba(27,42,94,0.13)] ${t.status === 'published' ? 'border-[#1DB887]/20 border-l-[4px] border-l-[#1DB887]' : 'border-primary/5'}`}
           >
+            {/* Image Overlay Preview */}
+            <div className="relative h-32 mb-4 rounded-xl overflow-hidden group/thumb">
+              <img src={t.thumbnail} alt="Result" className="w-full h-full object-cover transition-transform group-hover/thumb:scale-110" />
+              <div className="absolute top-2 left-2 px-2 py-0.5 bg-white/90 backdrop-blur rounded text-[9px] font-bold text-primary uppercase">
+                {t.category}
+              </div>
+            </div>
+
             {/* Author */}
-            <div className="flex justify-between items-start mb-5">
+            <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-3">
                 <img
                   src={t.avatar}
                   alt={t.name}
-                  className="w-11 h-11 rounded-full object-cover ring-2 ring-surface-container"
+                  className="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container"
                 />
                 <div>
                   <h4 className="font-['Syne'] font-bold text-primary text-sm">{t.name}</h4>
-                  <p className="text-[11px] text-primary/40">{t.role}</p>
+                  <p className="text-[11px] text-[#1DB887] font-bold">{t.business}</p>
                 </div>
               </div>
               <StarRating rating={t.rating} />
             </div>
 
+            {/* Impact Strip */}
+            <div className="bg-[#1DB887]/5 border border-[#1DB887]/10 rounded-lg px-3 py-2 mb-4 flex items-center justify-between">
+              <span className="text-[9px] font-black uppercase tracking-widest text-[#1DB887]">Live Impact</span>
+              <span className="text-[10px] font-bold text-[#1DB887]">{t.impact}</span>
+            </div>
+
             {/* Quote */}
-            <p className="text-sm text-primary/60 leading-relaxed italic mb-6">{t.quote}</p>
+            <p className="text-sm text-primary/60 leading-relaxed italic mb-6 line-clamp-3">{t.quote}</p>
 
             {/* Footer */}
             <div className="flex items-center justify-between pt-5 border-t border-primary/5">

@@ -15,6 +15,82 @@ export default function AdminDashboard() {
   const [services, setServices] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [user, setUser] = useState(null);
+  
+  // -- NEW USER MANAGEMENT STATE --
+  const [selectedUserId, setSelectedUserId] = useState(1);
+  const [userSearch, setUserSearch] = useState("");
+  const [userFilter, setUserFilter] = useState("all"); // all, pending, approved, active
+
+  const DUMMY_USERS = [
+    {
+      id: 1,
+      businessName: "Green Leaf Cafe",
+      ownerName: "Elena Rodriguez",
+      email: "elena@greenleaf.com",
+      phone: "+91 98765 43210",
+      category: "Organic Food",
+      status: "approved",
+      active: true,
+      plan: "Growth",
+      lastActive: "2 hours ago",
+      services: ["Website Builder", "Digital Marketing"],
+      features: {
+        analytics: true,
+        scheduler: true,
+        chat: true,
+        emailCampaign: false
+      },
+      showPricing: true,
+      notes: "High potential for loyalty module upsell.",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuC4Is56u9NAQGK9pNlgL5eCaAPXDfQY7r6uSwtYQaiHhBYnyoFWACLL0PLU8BHOdrjVhb0TdjG_ODw6JmLU2RUTVysMxu8sdeQL1nq-HhFQEvChUHYUBeoalRqALtiS-RD7s2vOUCSuA5gHkIFUmoQOZu3lsLSvFsWKie3P6M3Gx1-tuJluThY_RxuXmULmOlauKt8Mn2ey-T1WNW3-3YHZYkcQRoJmNJi-QoZYziogxYuwdaPCbbBAthCgxglzE9xFSVxCT7s2Eqc"
+    },
+    {
+      id: 2,
+      businessName: "City Tech Solutions",
+      ownerName: "Marcus Chen",
+      email: "marcus@citytech.in",
+      phone: "+91 91234 56789",
+      category: "IT Services",
+      status: "pending",
+      active: true,
+      plan: "Basic",
+      lastActive: "14 mins ago",
+      services: ["Standard Sync"],
+      features: {
+        analytics: true,
+        scheduler: false,
+        chat: false,
+        emailCampaign: false
+      },
+      showPricing: false,
+      notes: "Awaiting documents for final approval.",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuB6Fu8vt93HVMj0ZXJjAMQqeQj82yIjsuWwytnURFaPE-VW__skJTtrd25K6GYmjY9ctep34grmb8c9LG0dzuNwUGzm6c9jTauvjh2GurrgVoU-7lfi_5aSI49cClahGAgbhdvVzTDQ8sTbfbY7Wc8jQqXP4dI6C8afRZ6vn3yndglHB2NLRaKSqqZypF2Bl6hyym5U5hq7__2-bl0vP_4tU5opxZnX0IMRCMxmw8D2hn41j2EIPxXdmBCu11cd7-AgiKswqkdlMSo"
+    },
+    {
+      id: 3,
+      businessName: "Urban Paws Grooming",
+      ownerName: "Sarah Jenkins",
+      email: "sarah@urbanpaws.com",
+      phone: "+91 99887 76655",
+      category: "Pet Care",
+      status: "approved",
+      active: false,
+      plan: "Premium",
+      lastActive: "3 days ago",
+      services: ["Growth Bundle", "Social Media"],
+      features: {
+        analytics: true,
+        scheduler: true,
+        chat: true,
+        emailCampaign: true
+      },
+      showPricing: true,
+      notes: "Account disabled temporarily per owner request.",
+      avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuAUzGdMAiOeshY0pRx5ADCMCcGL-3xdLmYCiNPaPtTLe9K92Y21M15KfY5kV8yAijarLBcUtY1_7WUXxHnbqlEubIxzIXD_pYT9u9Vutjnkb7oVAhlrbt-wYSdh04cFPlI7jmWfBbwEh-l_L8jTzKDMCiMlO8l1yvuUSV1JPO-xyULrmLWo2cfdPAYk9s_voI_N8zSCA7_-_xD2IQIShm6DWlEmxpcOP5OqKceg2uyMCiXx2Dh_JsbtCwNM7haI1Hcf6Q_AYbyUa08"
+    }
+  ];
+
+  const selectedBusiness = DUMMY_USERS.find(u => u.id === selectedUserId) || DUMMY_USERS[0];
 
   const [form, setForm] = useState({
     title: "",
@@ -72,7 +148,6 @@ export default function AdminDashboard() {
     { id: "verification", label: "Verify Businesses", icon: "verified_user" },
     { id: "services", label: "Manage Services", icon: "list_alt" },
     { id: "users", label: "Users", icon: "group" },
-    { id: "settings", label: "Settings", icon: "settings_accessibility" },
   ];
 
   const currentTabLabel = tabs.find(t => t.id === activeTab)?.label || "Dashboard";
@@ -162,18 +237,189 @@ export default function AdminDashboard() {
         {/* Content Canvas */}
         <section className="p-10 space-y-10 flex-1">
           {activeTab === "overview" && (
-            <div className="grid grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-outline/10 text-center">
-                <h2 className="font-bold text-primary uppercase text-sm tracking-widest">Total Users</h2>
-                <p className="text-4xl mt-4 text-[#1DB887] font-black font-['Syne']">120</p>
+            <div className="space-y-8 animate-in fade-in duration-500">
+              {/*  Top Metrics Row  */}
+              <div className="grid grid-cols-4 gap-6">
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-[#1DB887]/10 flex items-center justify-center text-[#1DB887] group-hover:scale-110 transition-transform">
+                      <span className="material-symbols-outlined">storefront</span>
+                    </div>
+                    <span className="text-[10px] font-black text-[#1DB887] bg-[#1DB887]/5 px-2 py-1 rounded-full">+12%</span>
+                  </div>
+                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Total Businesses</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">120</p>
+                </div>
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                      <span className="material-symbols-outlined">verified_user</span>
+                    </div>
+                    <span className="text-[10px] font-black text-amber-500 bg-amber-500/5 px-2 py-1 rounded-full">4 Urgently</span>
+                  </div>
+                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Pending Verification</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">6</p>
+                </div>
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-500 group-hover:scale-110 transition-transform">
+                      <span className="material-symbols-outlined">list_alt</span>
+                    </div>
+                    <span className="text-[10px] font-black text-blue-500 bg-blue-500/5 px-2 py-1 rounded-full">Active</span>
+                  </div>
+                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Active Services</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">24</p>
+                </div>
+                <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="w-12 h-12 rounded-2xl bg-purple-500/10 flex items-center justify-center text-purple-500 group-hover:scale-110 transition-transform">
+                      <span className="material-symbols-outlined">mail</span>
+                    </div>
+                    <span className="text-[10px] font-black text-purple-500 bg-purple-500/5 px-2 py-1 rounded-full">842 Total</span>
+                  </div>
+                  <h3 className="text-secondary/60 text-xs font-bold uppercase tracking-widest">Emails Sent Today</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">156</p>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-outline/10 text-center">
-                <h2 className="font-bold text-primary uppercase text-sm tracking-widest">Services</h2>
-                <p className="text-4xl mt-4 text-[#1DB887] font-black font-['Syne']">24</p>
+
+              {/*  Quick Actions & Business Funnel  */}
+              <div className="grid grid-cols-3 gap-8">
+                {/*  Business Funnel (Pipeline)  */}
+                <div className="col-span-2 bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
+                  <div className="flex justify-between items-center mb-10">
+                    <h3 className="font-['Syne'] text-xl font-bold text-primary">Business Lifecycle Pipeline</h3>
+                    <span className="text-xs font-bold text-[#1DB887] bg-[#1DB887]/5 px-3 py-1 rounded-full">Real-time Stream</span>
+                  </div>
+                  <div className="flex justify-between items-center relative">
+                    {/*  Connecting line  */}
+                    <div className="absolute top-1/2 left-0 w-full h-0.5 bg-slate-100 -translate-y-1/2 -z-0"></div>
+                    
+                    {[
+                      { label: 'Signed Up', count: 120, icon: 'person_add', color: 'slate' },
+                      { label: 'Pending', count: 6, icon: 'hourglass_empty', color: 'amber' },
+                      { label: 'Approved', count: 98, icon: 'task_alt', color: 'emerald' },
+                      { label: 'Active', count: 84, icon: 'rocket_launch', color: 'blue' }
+                    ].map((step, i) => (
+                      <div key={i} className="relative z-10 flex flex-col items-center group">
+                        <div className={`w-14 h-14 rounded-2xl bg-white border-4 border-slate-50 flex items-center justify-center shadow-md mb-4 group-hover:scale-110 transition-transform`}>
+                          <span className={`material-symbols-outlined text-${step.color === 'emerald' ? '[#1DB887]' : step.color + '-500'}`}>{step.icon}</span>
+                        </div>
+                        <p className="text-[11px] font-black text-primary/40 uppercase tracking-widest mb-1">{step.label}</p>
+                        <p className="font-['Syne'] font-black text-primary">{step.count}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/*  Quick Actions Panel  */}
+                <div className="bg-[#0F1A3D] rounded-[32px] p-8 text-white">
+                  <h3 className="font-['Syne'] text-xl font-bold mb-6">Quick Pilot</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <button onClick={() => navigate('/admin/service/new')} className="flex flex-col items-center bg-white/5 hover:bg-[#1DB887] p-4 rounded-2xl transition-all group">
+                      <span className="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">add_circle</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Add Service</span>
+                    </button>
+                    <button onClick={() => navigate('/admin/verification')} className="flex flex-col items-center bg-white/5 hover:bg-[#1DB887] p-4 rounded-2xl transition-all group">
+                      <span className="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">verified</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Approve Biz</span>
+                    </button>
+                    <button onClick={() => navigate('/admin/commandcentre')} className="flex flex-col items-center bg-white/5 hover:bg-[#1DB887] p-4 rounded-2xl transition-all group">
+                      <span className="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">send</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Send Email</span>
+                    </button>
+                    <button onClick={() => navigate('/')} className="flex flex-col items-center bg-white/5 hover:bg-[#1DB887] p-4 rounded-2xl transition-all group">
+                      <span className="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">home</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider">Site Preview</span>
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow-sm border border-outline/10 text-center">
-                <h2 className="font-bold text-primary uppercase text-sm tracking-widest">Pending Verifications</h2>
-                <p className="text-4xl mt-4 text-amber-500 font-black font-['Syne']">4</p>
+
+              {/*  Deep Data Grids  */}
+              <div className="grid grid-cols-12 gap-8">
+                {/*  Activity Feed  */}
+                <div className="col-span-12 lg:col-span-5 bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
+                  <div className="flex justify-between items-center mb-8">
+                    <h3 className="font-['Syne'] text-xl font-bold text-primary">System Activity</h3>
+                    <button className="text-[10px] font-bold text-primary/40 uppercase tracking-widest hover:text-[#1DB887]">View All</button>
+                  </div>
+                  <div className="space-y-6">
+                    {[
+                      { action: 'New Business Signed Up', entity: 'Sharma Chai Stall', time: '2 mins ago', icon: 'person_add', color: '#1DB887' },
+                      { action: 'Service Purchased', entity: 'Website Builder', time: '14 mins ago', icon: 'shopping_cart', color: '#3B82F6' },
+                      { action: 'Verification Approved', entity: 'Priya\'s Pickles', time: '1 hour ago', icon: 'check_circle', color: '#10B981' },
+                      { action: 'Email Campaign Sent', entity: 'Onboarding Series', time: '3 hours ago', icon: 'mail', color: '#8B5CF6' },
+                      { action: 'Profile Updated', entity: 'Anita\'s Tiffin', time: 'Yesterday', icon: 'edit', color: '#F59E0B' }
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-4 group cursor-default">
+                        <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-400 group-hover:text-white group-hover:bg-[#1DB887] transition-all">
+                          <span className="material-symbols-outlined text-sm">{item.icon}</span>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-sm font-bold text-primary">{item.action}</p>
+                          <p className="text-[11px] text-on-surface-variant font-medium">{item.entity}</p>
+                        </div>
+                        <span className="text-[10px] font-bold text-primary/30 uppercase">{item.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/*  Performance & Insights  */}
+                <div className="col-span-12 lg:col-span-7 space-y-8">
+                  <div className="grid grid-cols-2 gap-8">
+                    {/*  Top Services  */}
+                    <div className="bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
+                      <h3 className="font-['Syne'] text-lg font-bold text-primary mb-6">Hot Services</h3>
+                      <div className="space-y-4">
+                        {[
+                          { name: 'Website Builder', use: 85, color: '#1DB887' },
+                          { name: 'Digital Marketing', use: 62, color: '#3B82F6' },
+                          { name: 'GST Setup', use: 44, color: '#F59E0B' }
+                        ].map((s, i) => (
+                          <div key={i} className="space-y-1">
+                            <div className="flex justify-between text-xs font-bold">
+                              <span>{s.name}</span>
+                              <span className="text-primary/40">{s.use}%</span>
+                            </div>
+                            <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                              <div className="h-full rounded-full transition-all duration-1000" style={{ width: `${s.use}%`, backgroundColor: s.color }}></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/*  Maintenance Alerts  */}
+                    <div className="bg-orange-50 rounded-[32px] p-8 border border-orange-100 shadow-sm flex flex-col justify-between">
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <span className="material-symbols-outlined text-orange-600" style={{ fontVariationSettings: "'FILL' 1" }}>warning</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-orange-900/60">System Alert</span>
+                        </div>
+                        <h4 className="font-['Syne'] text-lg font-bold text-orange-900 mb-2">2 Failed Actions</h4>
+                        <p className="text-xs text-orange-800/80 leading-relaxed font-medium">Domain connection failed for 'Sunita Sarees' and 'Peak Builders'.</p>
+                      </div>
+                      <button className="mt-6 w-full py-2 bg-orange-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-700 transition-colors">Resolve Now</button>
+                    </div>
+                  </div>
+
+                  {/*  Insights Card  */}
+                  <div className="bg-[#1DB887] p-8 rounded-[32px] relative overflow-hidden text-white shadow-xl shadow-[#1DB887]/20">
+                    <div className="relative z-10 flex justify-between items-center">
+                      <div className="max-w-md">
+                        <p className="text-[10px] font-black text-white/60 uppercase tracking-[0.3em] mb-3">Performance Insight</p>
+                        <h3 className="font-['Syne'] text-2xl font-bold leading-tight mb-4">Verification speed is up by 24% this week.</h3>
+                        <p className="text-white/80 text-sm font-medium">Your current onboarding friction is at an all-time low. Businesses are reaching "Active" status 1.2 days faster.</p>
+                      </div>
+                      <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                        <span className="material-symbols-outlined text-4xl" style={{ fontVariationSettings: "'FILL' 1" }}>trending_up</span>
+                      </div>
+                    </div>
+                    {/*  Decorative pulse  */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                  </div>
+                </div>
               </div>
             </div>
           )}
@@ -220,7 +466,7 @@ export default function AdminDashboard() {
                            <div className="flex justify-end gap-2">
                              <button
                                onClick={() => navigate(`/admin/service/edit/${s._id}`)}
-                               className="bg-primary-container text-primary px-4 py-2 rounded-lg text-xs font-bold hover:bg-primary/10 transition-all"
+                               className="bg-[#1DB887]/10 text-[#1DB887] border border-[#1DB887]/20 px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#1DB887] hover:text-white transition-all shadow-sm"
                              >
                                Edit
                              </button>
@@ -240,164 +486,187 @@ export default function AdminDashboard() {
              </div>
           )}
 
-          {activeTab === "verification" && (
-            <>
-              {/* Table Container (Bento Style) */}
-              <div className="bg-surface-container-lowest rounded-[20px] shadow-[0_12px_40px_rgba(27,42,94,0.10)] overflow-hidden border border-primary/5">
-                <div className="p-8 border-b border-surface-container flex justify-between items-center">
-                  <h2 className="font-['Syne'] text-xl font-bold text-primary">Verification Requests</h2>
-                </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse">
-                    <thead>
-                      <tr className="bg-surface-container-low">
-                        <th className="px-8 py-5 text-[11px] font-black text-primary/50 uppercase tracking-widest">Business Name</th>
-                        <th className="px-8 py-5 text-[11px] font-black text-primary/50 uppercase tracking-widest">Owner</th>
-                        <th className="px-8 py-5 text-[11px] font-black text-primary/50 uppercase tracking-widest">Service Selected</th>
-                        <th className="px-8 py-5 text-[11px] font-black text-primary/50 uppercase tracking-widest">Status</th>
-                        <th className="px-8 py-5 text-[11px] font-black text-primary/50 uppercase tracking-widest text-right">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-surface-container-low">
-                      {/* Pending Row 1 */}
-                      <tr className="hover:bg-surface transition-colors">
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
-                              <span className="material-symbols-outlined text-primary" data-icon="storefront">storefront</span>
-                            </div>
-                            <span className="font-bold text-primary">Green Leaf Cafe</span>
-                          </div>
-                        </td>
-                        <td className="px-8 py-6 text-on-surface-variant font-medium">Elena Rodriguez</td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold">Premium Listing</span>
-                        </td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-wider">Pending Review</span>
-                        </td>
-                        <td className="px-8 py-6 text-right">
-                          <div className="flex justify-end gap-2">
-                            <button className="bg-[#1DB887] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg shadow-[#1DB887]/20 hover:scale-105 active:scale-95 transition-all">Approve</button>
-                            <button className="bg-white border border-error/20 text-error px-4 py-2 rounded-lg text-xs font-bold hover:bg-error-container/20 transition-all">Reject</button>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Pending Row 2 */}
-                      <tr className="hover:bg-surface transition-colors">
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
-                              <span className="material-symbols-outlined text-primary" data-icon="construction">construction</span>
-                            </div>
-                            <span className="font-bold text-primary">City Tech Solutions</span>
-                          </div>
-                        </td>
-                        <td className="px-8 py-6 text-on-surface-variant font-medium">Marcus Chen</td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold">Standard Sync</span>
-                        </td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-wider">Pending Review</span>
-                        </td>
-                        <td className="px-8 py-6 text-right">
-                          <div className="flex justify-end gap-2">
-                            <button className="bg-[#1DB887] text-white px-4 py-2 rounded-lg text-xs font-bold shadow-lg shadow-[#1DB887]/20 hover:scale-105 active:scale-95 transition-all">Approve</button>
-                            <button className="bg-white border border-error/20 text-error px-4 py-2 rounded-lg text-xs font-bold hover:bg-error-container/20 transition-all">Reject</button>
-                          </div>
-                        </td>
-                      </tr>
-                      {/* Approved Row 1 */}
-                      <tr className="hover:bg-surface transition-colors">
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center">
-                              <span className="material-symbols-outlined text-secondary" data-icon="pets">pets</span>
-                            </div>
-                            <span className="font-bold text-primary">Urban Paws Grooming</span>
-                          </div>
-                        </td>
-                        <td className="px-8 py-6 text-on-surface-variant font-medium">Sarah Jenkins</td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold">Growth Bundle</span>
-                        </td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-black uppercase tracking-wider">Approved</span>
-                        </td>
-                        <td className="px-8 py-6 text-right">
-                          <button className="bg-primary text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-primary-container transition-all">View Profile</button>
-                        </td>
-                      </tr>
-                      {/* Approved Row 2 */}
-                      <tr className="hover:bg-surface transition-colors">
-                        <td className="px-8 py-6">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center">
-                              <span className="material-symbols-outlined text-secondary" data-icon="restaurant">restaurant</span>
-                            </div>
-                            <span className="font-bold text-primary">The Bistro North</span>
-                          </div>
-                        </td>
-                        <td className="px-8 py-6 text-on-surface-variant font-medium">James Miller</td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-bold">Premium Listing</span>
-                        </td>
-                        <td className="px-8 py-6">
-                          <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-container text-secondary text-[10px] font-black uppercase tracking-wider">Approved</span>
-                        </td>
-                        <td className="px-8 py-6 text-right">
-                          <button className="bg-primary text-white px-6 py-2 rounded-lg text-xs font-bold hover:bg-primary-container transition-all">View Profile</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                {/* Footer / Pagination */}
-                <div className="p-6 bg-surface-container-low flex justify-between items-center px-8 border-t border-surface-container">
-                  <span className="text-xs text-on-surface-variant font-medium tracking-tight">Showing 4 of 16 verification tasks</span>
-                  <div className="flex items-center gap-2">
-                    <button className="w-8 h-8 flex items-center justify-center rounded bg-white text-primary hover:bg-surface-container-high border border-outline/10"><span className="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span></button>
-                    <button className="w-8 h-8 flex items-center justify-center rounded bg-primary text-white text-xs font-bold">1</button>
-                    <button className="w-8 h-8 flex items-center justify-center rounded bg-white text-primary text-xs font-bold border border-outline/10">2</button>
-                    <button className="w-8 h-8 flex items-center justify-center rounded bg-white text-primary hover:bg-surface-container-high border border-outline/10"><span className="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+          {activeTab === "users" && (
+            <div className="flex gap-8 h-[calc(100vh-230px)] animate-in slide-in-from-bottom-4 duration-500">
+              {/*  LEFT PANEL: Users List  */}
+              <div className="w-[400px] flex flex-col bg-white rounded-[32px] border border-primary/5 shadow-sm overflow-hidden">
+                <div className="p-6 border-b border-primary/5 space-y-4">
+                  <div className="relative">
+                    <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary/30 text-xl">search</span>
+                    <input 
+                      type="text" 
+                      placeholder="Search business or owner..." 
+                      className="w-full pl-12 pr-4 py-3 bg-surface rounded-2xl text-sm font-medium border border-transparent focus:border-[#1DB887] outline-none transition-all"
+                      value={userSearch}
+                      onChange={(e) => setUserSearch(e.target.value)}
+                    />
                   </div>
+                  <div className="flex gap-2 overflow-x-auto pb-2 hide-scrollbar">
+                    {["all", "pending", "approved"].map((f) => (
+                      <button 
+                        key={f}
+                        onClick={() => setUserFilter(f)}
+                        className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${userFilter === f ? "bg-[#1DB887] text-white shadow-lg shadow-[#1DB887]/20" : "bg-slate-50 text-primary/40 hover:bg-slate-100"}`}
+                      >
+                        {f}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+                  {DUMMY_USERS.filter(u => 
+                    (userFilter === "all" || u.status === userFilter) &&
+                    (u.businessName.toLowerCase().includes(userSearch.toLowerCase()) || u.ownerName.toLowerCase().includes(userSearch.toLowerCase()))
+                  ).map((u) => (
+                    <div 
+                      key={u.id}
+                      onClick={() => setSelectedUserId(u.id)}
+                      className={`p-4 rounded-[24px] cursor-pointer transition-all duration-300 border ${selectedUserId === u.id ? "bg-[#1DB887]/5 border-[#1DB887]/20 shadow-sm" : "border-transparent hover:bg-slate-50"}`}
+                    >
+                      <div className="flex justify-between items-start mb-2">
+                        <div className="flex items-center gap-3">
+                          <img src={u.avatar} className="w-10 h-10 rounded-xl object-cover" alt="" />
+                          <div>
+                            <p className="font-bold text-primary text-sm line-clamp-1">{u.businessName}</p>
+                            <p className="text-[10px] text-primary/40 font-medium">{u.category}</p>
+                          </div>
+                        </div>
+                        <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded-full ${u.status === 'approved' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>
+                          {u.status}
+                        </span>
+                      </div>
+                      <div className="flex justify-between items-center text-[10px] pt-3 border-t border-primary/5">
+                        <span className="font-bold text-primary/60">{u.ownerName}</span>
+                        <span className="text-primary/30 uppercase">{u.plan} Plan</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
 
-              {/* Asymmetric Support Grid */}
-              <div className="grid grid-cols-3 gap-8">
-                <div className="col-span-2 bg-primary p-10 rounded-[20px] relative overflow-hidden text-white flex items-center shadow-[0_12px_40px_rgba(27,42,94,0.10)]">
-                  <div className="relative z-10 space-y-4 max-w-lg">
-                    <p className="text-[11px] font-black text-[#1DB887] uppercase tracking-[0.3em]">Quality Insight</p>
-                    <h3 className="font-['Syne'] text-3xl font-bold leading-tight">Verification speed is up by 24% this week.</h3>
-                    <p className="text-on-primary-container/80 text-sm font-medium">Your response time is critical for local merchant onboarding. Keep up the high efficiency to maintain platform trust.</p>
-                    <button className="bg-secondary-fixed text-on-secondary-fixed px-6 py-3 rounded-xl font-bold text-sm shadow-xl shadow-secondary/20 active:scale-95 transition-transform">Run Analytics Report</button>
+              {/*  RIGHT PANEL: User Details  */}
+              <div className="flex-1 bg-white rounded-[32px] border border-primary/5 shadow-sm overflow-hidden flex flex-col">
+                <div className="p-8 border-b border-primary/5 flex justify-between items-center bg-surface/30">
+                  <div className="flex items-center gap-6">
+                    <img src={selectedBusiness.avatar} className="w-20 h-20 rounded-[28px] object-cover ring-4 ring-white shadow-xl" alt="" />
+                    <div>
+                      <h2 className="font-['Syne'] text-3xl font-bold text-primary tracking-tight">{selectedBusiness.businessName}</h2>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-xs font-bold text-[#1DB887]">{selectedBusiness.category}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
+                        <span className="text-xs font-medium text-primary/40">Registered {selectedBusiness.lastActive}</span>
+                      </div>
+                    </div>
                   </div>
-                  {/* Decorative Element */}
-                  <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#1DB887]/10 rounded-full blur-3xl"></div>
+                  <div className="flex gap-3">
+                    <button className="px-6 py-2.5 bg-primary text-white rounded-xl text-xs font-bold hover:scale-105 transition-all shadow-lg shadow-primary/10">Send Direct Email</button>
+                    <button className="p-2.5 bg-slate-50 text-slate-400 rounded-xl hover:text-error hover:bg-error/10 transition-all border border-transparent hover:border-error/20">
+                      <span className="material-symbols-outlined">delete</span>
+                    </button>
+                  </div>
                 </div>
-                <div className="bg-surface-container-high p-8 rounded-[20px] border border-primary/5 flex flex-col justify-between shadow-[0_12px_40px_rgba(27,42,94,0.10)]">
-                  <div>
-                    <div className="flex items-center gap-2 mb-4">
-                      <span className="material-symbols-outlined text-amber-500" data-icon="priority_high">priority_high</span>
-                      <span className="text-xs font-black uppercase tracking-widest text-primary/60">Alert</span>
+
+                <div className="flex-1 overflow-y-auto p-8 space-y-10 custom-scrollbar">
+                  {/*  Grid Sections  */}
+                  <div className="grid grid-cols-2 gap-8">
+                    {/*  Section 1: Status & Safety  */}
+                    <div className="space-y-6">
+                      <div className="bg-slate-50/50 p-6 rounded-[28px] border border-primary/5">
+                        <h4 className="text-[11px] font-black text-primary/30 uppercase tracking-[0.2em] mb-6">Status & Accountability</h4>
+                        <div className="space-y-4">
+                          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-primary/5">
+                            <div>
+                              <p className="text-sm font-bold text-primary">Verification Status</p>
+                              <p className="text-[10px] text-primary/40 font-medium capitalize">{selectedBusiness.status}</p>
+                            </div>
+                            <div className="flex bg-slate-100 p-1 rounded-xl">
+                              <button className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${selectedBusiness.status === 'approved' ? 'bg-[#1DB887] text-white shadow-sm' : 'text-primary/40'}`}>Approved</button>
+                              <button className={`px-4 py-1.5 rounded-lg text-[10px] font-black uppercase transition-all ${selectedBusiness.status === 'pending' ? 'bg-amber-500 text-white shadow-sm' : 'text-primary/40'}`}>Pending</button>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-between p-4 bg-white rounded-2xl border border-primary/5">
+                            <div>
+                              <p className="text-sm font-bold text-primary">Account Access</p>
+                              <p className="text-[10px] text-primary/40 font-medium">{selectedBusiness.active ? 'User can log in' : 'Access Restricted'}</p>
+                            </div>
+                            <button className={`w-12 h-6 rounded-full relative transition-all ${selectedBusiness.active ? 'bg-[#1DB887]' : 'bg-slate-200'}`}>
+                              <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${selectedBusiness.active ? 'right-1' : 'left-1'}`}></div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50/50 p-6 rounded-[28px] border border-primary/5">
+                        <h4 className="text-[11px] font-black text-primary/30 uppercase tracking-[0.2em] mb-6">Module Permissions</h4>
+                        <div className="grid grid-cols-2 gap-3">
+                          {[
+                            { label: 'Analytics', key: 'analytics' },
+                            { label: 'Scheduler', key: 'scheduler' },
+                            { label: 'Chat Support', key: 'chat' },
+                            { label: 'Email Campaigns', key: 'emailCampaign' }
+                          ].map(feat => (
+                            <div key={feat.key} className="flex items-center justify-between p-3 bg-white rounded-xl border border-primary/5">
+                              <span className="text-[11px] font-bold text-primary/60">{feat.label}</span>
+                              <button className={`w-10 h-5 rounded-full relative transition-all ${selectedBusiness.features[feat.key] ? 'bg-[#1DB887]' : 'bg-slate-200'}`}>
+                                <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${selectedBusiness.features[feat.key] ? 'right-0.5' : 'left-0.5'}`}></div>
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                    <h4 className="font-['Syne'] text-lg font-bold text-primary mb-2">Flagged Entities</h4>
-                    <p className="text-xs text-on-surface-variant leading-relaxed">2 businesses have been flagged by the automated crawler for inconsistent license numbers.</p>
+
+                    {/*  Section 2: Contact & Admin Notes  */}
+                    <div className="space-y-6">
+                      <div className="bg-surface p-6 rounded-[28px] border border-primary/5 h-full flex flex-col">
+                        <h4 className="text-[11px] font-black text-primary/30 uppercase tracking-[0.2em] mb-6">Internal Audit / Notes</h4>
+                        <textarea 
+                          placeholder="Write administrative notes about this business..."
+                          className="flex-1 w-full bg-white/50 p-4 rounded-2xl text-xs font-medium border border-primary/5 focus:border-[#1DB887] outline-none transition-all resize-none mb-4"
+                          defaultValue={selectedBusiness.notes}
+                        ></textarea>
+                        <div className="p-4 bg-blue-50/50 rounded-2xl border border-blue-100">
+                          <p className="text-[10px] font-black text-blue-900/40 uppercase tracking-widest mb-2">Recent System Action</p>
+                          <p className="text-[11px] font-bold text-blue-900 leading-relaxed">Profile synchronized with Google Business Profile on April 14, 2024.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="mt-6 flex flex-col gap-2">
-                    <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg text-xs font-bold border border-outline/5">
-                      <span>Silo Designs</span>
-                      <span className="text-error">License Expired</span>
+
+                  {/*  Section 3: Service Configuration  */}
+                  <div className="bg-slate-50/50 p-8 rounded-[32px] border border-primary/5">
+                    <div className="flex justify-between items-center mb-8">
+                      <div>
+                        <h4 className="text-[11px] font-black text-primary/30 uppercase tracking-[0.2em]">Service Entitlements</h4>
+                        <p className="text-lg font-['Syne'] font-bold text-primary mt-1">Configure user's active toolkit</p>
+                      </div>
+                      <div className="px-4 py-2 bg-white rounded-xl border border-primary/5 flex items-center gap-3">
+                        <span className="text-[10px] font-black text-primary/40 uppercase">Pricing Visible</span>
+                        <button className={`w-10 h-5 rounded-full relative transition-all ${selectedBusiness.showPricing ? 'bg-[#1DB887]' : 'bg-slate-200'}`}>
+                          <div className={`absolute top-0.5 w-4 h-4 bg-white rounded-full transition-all ${selectedBusiness.showPricing ? 'right-0.5' : 'left-0.5'}`}></div>
+                        </button>
+                      </div>
                     </div>
-                    <div className="flex items-center justify-between p-3 bg-white/50 rounded-lg text-xs font-bold border border-outline/5">
-                      <span>Peak Builders</span>
-                      <span className="text-error">Duplicate EIN</span>
+                    <div className="grid grid-cols-4 gap-4">
+                      {['Website Builder', 'Digital Marketing', 'Social Media', 'Apparel Printing', 'Storefront Sync', 'GST Registration', 'Standard SEO', 'Brand Identity'].map(service => (
+                        <div key={service} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-primary/5 hover:border-[#1DB887]/20 transition-all cursor-pointer group">
+                          <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${selectedBusiness.services.includes(service) ? 'bg-[#1DB887] border-[#1DB887]' : 'border-slate-200 bg-slate-50'}`}>
+                            {selectedBusiness.services.includes(service) && <span className="material-symbols-outlined text-white text-[14px]">check</span>}
+                          </div>
+                          <span className="text-xs font-bold text-primary/60 group-hover:text-primary">{service}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
+                </div>
+
+                <div className="p-6 bg-surface/30 border-t border-primary/5 flex justify-end gap-3">
+                   <button className="px-8 py-3 bg-white border border-primary/10 text-primary rounded-2xl text-sm font-bold hover:bg-slate-50 transition-all">Cancel Changes</button>
+                   <button className="px-8 py-3 bg-[#1DB887] text-white rounded-2xl text-sm font-bold hover:scale-105 transition-all shadow-xl shadow-[#1DB887]/20">Update Business Profile</button>
                 </div>
               </div>
-            </>
+            </div>
           )}
 
         </section>
