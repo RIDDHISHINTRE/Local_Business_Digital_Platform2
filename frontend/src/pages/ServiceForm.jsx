@@ -119,7 +119,7 @@ export default function ServiceForm() {
   };
 
   return (
-    <div className="bg-slate-50 text-slate-900 font-body antialiased flex flex-col min-h-screen">
+    <div className="bg-slate-50 text-slate-900 font-ui antialiased flex flex-col min-h-screen">
       {/* TopNavBar */}
       <header className="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div className="flex justify-between items-center px-6 py-2 h-16 w-full max-w-7xl mx-auto">
@@ -163,7 +163,7 @@ export default function ServiceForm() {
           {/* Page Header */}
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
             <div>
-              <h1 className="text-2xl font-bold text-slate-900 font-headline">
+              <h1 className="text-2xl font-bold text-slate-900 font-display">
                 {isEditMode ? "Edit Service" : "Configure Service"}
               </h1>
               <p className="text-sm text-slate-500 mt-1">Create a new service offering or update an existing one.</p>
@@ -196,7 +196,7 @@ export default function ServiceForm() {
               {/* Card 1: Basic Info */}
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-lg font-semibold text-slate-800 font-headline flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-800 font-display flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-500">info</span>
                     Basic Information
                   </h3>
@@ -254,7 +254,7 @@ export default function ServiceForm() {
               {/* Card 2: Category & Tags */}
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-lg font-semibold text-slate-800 font-headline flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-800 font-display flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-500">category</span>
                     Category &amp; Tags
                   </h3>
@@ -314,7 +314,7 @@ export default function ServiceForm() {
               {/* Card 3: Media & Icons */}
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-lg font-semibold text-slate-800 font-headline flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-800 font-display flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-500">imagesmode</span>
                     Media Assets
                   </h3>
@@ -380,7 +380,7 @@ export default function ServiceForm() {
               {/* Card 4: Pricing & Billing */}
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-lg font-semibold text-slate-800 font-headline flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-800 font-display flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-500">payments</span>
                     Pricing Details
                   </h3>
@@ -539,7 +539,7 @@ export default function ServiceForm() {
               {/* Card 5: Visibility & Status */}
               <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
                 <div className="px-6 py-5 border-b border-slate-100 bg-slate-50/50">
-                  <h3 className="text-lg font-semibold text-slate-800 font-headline flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-slate-800 font-display flex items-center gap-2">
                     <span className="material-symbols-outlined text-blue-500">visibility</span>
                     Visibility &amp; Status
                   </h3>

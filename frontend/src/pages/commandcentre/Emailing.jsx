@@ -148,7 +148,7 @@ function TemplatesTab() {
               </div>
               <div>
                 <p className="text-[10px] uppercase tracking-widest font-black text-primary/40">{s.label}</p>
-                <p className="font-['Syne'] text-xl font-black text-primary">{s.value}</p>
+                <p className="font-mono text-xl font-black text-primary">{s.value}</p>
               </div>
             </div>
           ))}
@@ -165,7 +165,7 @@ function TemplatesTab() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2 mb-1">
-                <h3 className="font-['Syne'] text-sm font-bold text-primary truncate">{t.name}</h3>
+                <h3 className="font-['Bricolage_Grotesque'] text-sm font-bold text-primary truncate">{t.name}</h3>
                 <StatusBadge status={t.status} />
               </div>
               <p className="text-xs text-primary/50 truncate mb-1">
@@ -212,7 +212,7 @@ function TemplatesTab() {
         {previewId && previewTemplate ? (
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_8px_30px_rgba(27,42,94,0.07)] sticky top-24 overflow-hidden">
             <div className="bg-[#0F1A3D] px-7 py-5 flex items-center justify-between">
-              <h3 className="font-['Syne'] text-base font-bold text-white flex items-center gap-2">
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-white flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-[#1DB887]">visibility</span>
                 Preview
               </h3>
@@ -236,7 +236,7 @@ function TemplatesTab() {
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_8px_30px_rgba(27,42,94,0.07)] p-7 sticky top-24">
             <div className="flex items-center gap-2 mb-3">
               <span className="material-symbols-outlined text-primary/30">data_object</span>
-              <h3 className="font-['Syne'] text-base font-bold text-primary">Template Variables</h3>
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary">Template Variables</h3>
             </div>
             <p className="text-sm text-primary/50 mb-5 leading-relaxed">
               Use these dynamic tags in your subject lines or email bodies. They will be automatically replaced with user data upon sending.
@@ -289,7 +289,7 @@ function SendEmailTab() {
         <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
           <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5 flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px] text-[#1DB887]">group</span>
-            <h3 className="font-['Syne'] text-base font-bold text-primary">1. Target Audience</h3>
+            <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary">1. Target Audience</h3>
           </div>
           <div className="p-7 space-y-6">
             <div>
@@ -336,7 +336,7 @@ function SendEmailTab() {
           <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px] text-blue-500">edit_note</span>
-              <h3 className="font-['Syne'] text-base font-bold text-primary">2. Compose Message</h3>
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary">2. Compose Message</h3>
             </div>
             <button className="inline-flex items-center gap-1.5 text-sm font-bold text-[#1DB887] hover:text-[#18a67a] bg-[#1DB887]/10 hover:bg-[#1DB887]/20 px-3.5 py-1.5 rounded-xl transition-colors">
               <span className="material-symbols-outlined text-[16px]">visibility</span>
@@ -405,7 +405,7 @@ function SendEmailTab() {
         <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
           <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5 flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px] text-purple-500">schedule_send</span>
-            <h3 className="font-['Syne'] text-base font-bold text-primary">Delivery Options</h3>
+            <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary">Delivery Options</h3>
           </div>
           <div className="p-7 space-y-4">
             {[
@@ -438,7 +438,7 @@ function SendEmailTab() {
         <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
           <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5 flex items-center gap-2">
             <span className="material-symbols-outlined text-[18px] text-primary/30">data_object</span>
-            <h3 className="font-['Syne'] text-base font-bold text-primary">Quick Variables</h3>
+            <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary">Quick Variables</h3>
           </div>
           <div className="p-7">
             <p className="text-xs text-primary/40 mb-4">Click to insert into message body.</p>
@@ -461,7 +461,7 @@ function SendEmailTab() {
         {/* Summary & Actions */}
         <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden sticky top-24">
           <div className="bg-[#0F1A3D] px-7 py-5">
-            <h3 className="font-['Syne'] text-base font-bold text-white flex items-center gap-2">
+            <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-white flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px] text-[#1DB887]">summarize</span>
               Campaign Summary
             </h3>
@@ -602,7 +602,7 @@ export default function Emailing() {
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
-          <h2 className="font-['Syne'] text-2xl font-black text-primary tracking-tight">Emailing &amp; Notifications</h2>
+          <h2 className="font-['Bricolage_Grotesque'] text-2xl font-black text-primary tracking-tight">Emailing &amp; Notifications</h2>
           <p className="text-sm text-primary/40 mt-1">Manage communication templates and delivery history.</p>
         </div>
         <button

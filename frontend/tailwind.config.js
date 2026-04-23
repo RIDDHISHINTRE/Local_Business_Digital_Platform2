@@ -63,9 +63,14 @@ export default {
         "full": "9999px"
       },
       fontFamily: {
-        "headline": ["Epilogue"],
-        "body": ["Manrope"],
-        "label": ["Manrope"]
+        "display":  ["Bricolage Grotesque", "sans-serif"],
+        "ui":       ["Inter", "sans-serif"],
+        "mono":     ["JetBrains Mono", "monospace"],
+        "sans":     ["Inter", "sans-serif"],
+        // Legacy aliases
+        "headline": ["Bricolage Grotesque", "sans-serif"],
+        "body":     ["Inter", "sans-serif"],
+        "label":    ["Inter", "sans-serif"],
       }
     },
   },

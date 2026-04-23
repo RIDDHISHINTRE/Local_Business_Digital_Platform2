@@ -32,7 +32,7 @@ export default function Businesses() {
           <div key={stat.label} className="bg-surface-container-lowest rounded-[20px] p-6 shadow-[0_12px_40px_rgba(27,42,94,0.08)] border border-primary/5 flex justify-between items-start">
             <div>
               <p className="text-[10px] uppercase tracking-widest font-black text-primary/40 mb-2">{stat.label}</p>
-              <h3 className="font-['Syne'] text-2xl font-black text-primary">{stat.value}</h3>
+              <h3 className="font-mono text-2xl font-black text-primary">{stat.value}</h3>
               <p className={`text-xs font-bold mt-2 flex items-center gap-1 ${stat.up === true ? 'text-[#1DB887]' : stat.up === false ? 'text-red-500' : 'text-primary/40'}`}>
                 {stat.up === true && <span className="material-symbols-outlined text-[14px]">trending_up</span>}
                 {stat.up === false && <span className="material-symbols-outlined text-[14px]">trending_down</span>}
@@ -51,7 +51,7 @@ export default function Businesses() {
         {/* Left: Business Table */}
         <div className="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-[20px] shadow-[0_12px_40px_rgba(27,42,94,0.08)] border border-primary/5 flex flex-col overflow-hidden">
           <div className="px-8 py-5 border-b border-primary/5 flex justify-between items-center">
-            <h2 className="font-['Syne'] font-black text-lg text-primary">Registered Businesses</h2>
+            <h2 className="font-['Bricolage_Grotesque'] font-black text-lg text-primary">Registered Businesses</h2>
             <div className="flex gap-2">
               <button className="px-4 py-1.5 text-xs font-bold border border-primary/10 rounded-xl hover:bg-surface-container text-primary/60 transition-colors">Filter</button>
               <button className="px-4 py-1.5 text-xs font-bold border border-primary/10 rounded-xl hover:bg-surface-container text-primary/60 transition-colors">Export</button>
@@ -104,9 +104,9 @@ export default function Businesses() {
           <div className="p-7 bg-[#0F1A3D] rounded-t-[20px]">
             <div className="flex justify-between items-start mb-4">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-2xl bg-[#1DB887]/20 flex items-center justify-center font-['Syne'] text-2xl font-black text-[#1DB887]">{selected.initials}</div>
+                <div className="w-16 h-16 rounded-2xl bg-[#1DB887]/20 flex items-center justify-center font-['Bricolage_Grotesque'] text-2xl font-black text-[#1DB887]">{selected.initials}</div>
                 <div>
-                  <h2 className="font-['Syne'] text-xl font-black text-white">{selected.name}</h2>
+                  <h2 className="font-['Bricolage_Grotesque'] text-xl font-black text-white">{selected.name}</h2>
                   <div className="flex items-center gap-1.5 mt-1">
                     <span className="material-symbols-outlined text-[14px] text-[#1DB887]">location_on</span>
                     <p className="text-xs text-white/50">{selected.location}</p>

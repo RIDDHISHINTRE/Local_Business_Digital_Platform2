@@ -16,13 +16,13 @@ export default function UserDashboard() {
   };
 
   return (
-    <div className="bg-surface text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container">
+    <div className="bg-surface text-on-background font-ui selection:bg-secondary-container selection:text-on-secondary-container">
 
       {/* SIDEBAR */}
       <aside className="h-screen w-64 fixed left-0 top-0 bg-slate-50 border-r border-[#1B2A5E]/10 flex flex-col p-6 space-y-4 z-40">
 
         <div className="mb-8 px-2">
-          <h1 className="font-['Syne'] font-bold text-[#1B2A5E] text-2xl tracking-tighter">
+          <h1 className="font-['Bricolage_Grotesque'] font-bold text-[#1B2A5E] text-2xl tracking-tighter">
             LocalBoost
           </h1>
           <p className="text-xs text-slate-500 uppercase tracking-widest mt-1">
@@ -70,7 +70,7 @@ export default function UserDashboard() {
         {/* HEADER */}
         <header className="sticky top-0 w-full z-30 bg-white/80 backdrop-blur-md px-10 py-6 flex justify-between items-center">
 
-          <h2 className="font-['Syne'] text-2xl font-extrabold text-[#1B2A5E]">
+          <h2 className="font-['Bricolage_Grotesque'] text-2xl font-extrabold text-[#1B2A5E]">
             Browse Services
           </h2>
 

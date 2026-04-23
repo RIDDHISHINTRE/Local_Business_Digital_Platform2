@@ -29,7 +29,7 @@ export default function Testimonials() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h2 className="font-['Syne'] text-2xl font-black text-primary tracking-tight">Testimonials Manager</h2>
+          <h2 className="font-['Bricolage_Grotesque'] text-2xl font-black text-primary tracking-tight">Testimonials Manager</h2>
           <p className="text-sm text-primary/50 mt-1">Curate and manage client social proof across platforms.</p>
         </div>
         <div className="flex gap-3">
@@ -57,7 +57,7 @@ export default function Testimonials() {
             </div>
             <div>
               <p className="text-[10px] uppercase tracking-widest font-black text-primary/40">{s.label}</p>
-              <p className="font-['Syne'] text-2xl font-black text-primary mt-0.5">{s.value}</p>
+              <p className="font-mono text-2xl font-black text-primary mt-0.5">{s.value}</p>
             </div>
           </div>
         ))}
@@ -87,7 +87,7 @@ export default function Testimonials() {
                   className="w-10 h-10 rounded-full object-cover ring-2 ring-surface-container"
                 />
                 <div>
-                  <h4 className="font-['Syne'] font-bold text-primary text-sm">{t.name}</h4>
+                  <h4 className="font-['Bricolage_Grotesque'] font-bold text-primary text-sm">{t.name}</h4>
                   <p className="text-[11px] text-[#1DB887] font-bold">{t.business}</p>
                 </div>
               </div>

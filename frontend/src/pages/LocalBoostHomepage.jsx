@@ -57,7 +57,7 @@ export default function LocalBoostHomepage() {
   }, [isHovered]);
 
   return (
-    <div className="bg-surface font-body text-on-surface">
+    <div className="bg-surface font-ui text-on-surface">
 
 
 
@@ -66,21 +66,21 @@ export default function LocalBoostHomepage() {
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       <title>LocalBoost | Your Business, Digitally Transformed</title>
 
-      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&amp;family=DM+Sans:wght@400;500;700&amp;family=Epilogue:wght@700&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;display=swap" rel="stylesheet" />
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
 
 
       {/*  Top Navigation Shell  */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#1B2A5E]/80 backdrop-blur-md shadow-sm dark:shadow-none">
         <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-          <span className="font-['Syne'] text-2xl font-extrabold text-[#1B2A5E] dark:text-white">LocalBoost</span>
-          <div className="hidden md:flex items-center space-x-8 font-['DM_Sans'] text-sm font-medium tracking-tight">
+          <span className="font-['Bricolage_Grotesque'] text-2xl font-extrabold text-[#1B2A5E] dark:text-white">LocalBoost</span>
+          <div className="hidden md:flex items-center space-x-8 font-ui text-sm font-medium tracking-tight">
             <a className="text-[#1B2A5E] dark:text-slate-300 hover:text-[#1DB887] transition-colors" href="#">Services</a>
             <a className="text-[#1B2A5E] dark:text-slate-300 hover:text-[#1DB887] transition-colors" href="#">How it Works</a>
             <a className="text-[#1B2A5E] dark:text-slate-300 hover:text-[#1DB887] transition-colors" href="#">Pricing</a>
             <a className="text-[#1B2A5E] dark:text-slate-300 hover:text-[#1DB887] transition-colors" href="#">About</a>
           </div>
-          <div className="flex items-center space-x-4 font-['DM_Sans'] text-sm">
+          <div className="flex items-center space-x-4 font-ui text-sm">
             <Link to="/sign-in" className="text-[#1B2A5E] dark:text-white font-medium hover:opacity-80 transition-all duration-200 active:scale-95">Sign In</Link>
             <Link to="/flow" className="bg-[#1B2A5E] text-white px-6 py-2.5 rounded-[10px] font-bold hover:opacity-90 transition-all duration-200 active:scale-95 shadow-lg">Get Started</Link>
           </div>
@@ -94,7 +94,7 @@ export default function LocalBoostHomepage() {
             <span className="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-bold tracking-widest uppercase mb-6">
               All-in-One Digital Platform for Local Businesses
             </span>
-            <h1 className="font-['Syne'] text-[60px] leading-[1.1] font-extrabold text-primary mb-8">
+            <h1 className="font-['Bricolage_Grotesque'] text-[60px] leading-[1.1] font-extrabold text-primary mb-8">
               Your Business, Digitally Transformed
             </h1>
             <p className="text-lg text-on-surface-variant max-w-xl mb-12 font-medium">
@@ -102,15 +102,15 @@ export default function LocalBoostHomepage() {
             </p>
             <div className="flex flex-wrap gap-12">
               <div>
-                <p className="text-4xl font-bold text-primary">12k+</p>
+                <p className="text-4xl font-bold text-primary font-mono">12k+</p>
                 <p className="text-xs font-bold text-outline tracking-wider uppercase mt-1">Vendors Active</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-secondary">94%</p>
+                <p className="text-4xl font-bold text-secondary font-mono">94%</p>
                 <p className="text-xs font-bold text-outline tracking-wider uppercase mt-1">Growth Rate</p>
               </div>
               <div>
-                <p className="text-4xl font-bold text-primary">24/7</p>
+                <p className="text-4xl font-bold text-primary font-mono">24/7</p>
                 <p className="text-xs font-bold text-outline tracking-wider uppercase mt-1">Expert Support</p>
               </div>
             </div>
@@ -175,19 +175,19 @@ export default function LocalBoostHomepage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <h3 className="text-5xl font-extrabold text-white mb-2">97%</h3>
+              <h3 className="text-5xl font-extrabold text-white mb-2 font-mono">97%</h3>
               <p className="text-on-primary-container text-sm font-medium">Customer Success</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-extrabold text-white mb-2">78%</h3>
+              <h3 className="text-5xl font-extrabold text-white mb-2 font-mono">78%</h3>
               <p className="text-on-primary-container text-sm font-medium">Faster Setup</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-extrabold text-white mb-2">3.5x</h3>
+              <h3 className="text-5xl font-extrabold text-white mb-2 font-mono">3.5x</h3>
               <p className="text-on-primary-container text-sm font-medium">ROI on Average</p>
             </div>
             <div className="text-center">
-              <h3 className="text-5xl font-extrabold text-white mb-2">$4.2T</h3>
+              <h3 className="text-5xl font-extrabold text-white mb-2 font-mono">$4.2T</h3>
               <p className="text-on-primary-container text-sm font-medium">Market Potential</p>
             </div>
           </div>
@@ -198,7 +198,7 @@ export default function LocalBoostHomepage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="mb-20">
             <p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">The Problem</p>
-            <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary max-w-2xl">Local Businesses Are Being Left Behind</h2>
+            <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-5xl font-bold text-primary max-w-2xl">Local Businesses Are Being Left Behind</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-surface-container-low p-10 rounded-[24px] hover:bg-white transition-colors duration-300">
@@ -238,7 +238,7 @@ export default function LocalBoostHomepage() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div className="max-w-2xl">
               <p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">Our Services</p>
-              <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary">Everything You Need to Grow Online</h2>
+              <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-5xl font-bold text-primary">Everything You Need to Grow Online</h2>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -247,8 +247,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="language">language</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Website Builder</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Create a stunning, SEO-optimized website in minutes with zero coding skills required. Fully responsive and ready to sell.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">Website Builder</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Create a stunning, SEO-optimized website in minutes with zero coding skills required. Fully responsive and ready to sell.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -259,8 +259,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="share">share</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Social Media Setup</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Get your profiles optimized and automated. Reach your local community where they spend time most.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">Social Media Setup</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Get your profiles optimized and automated. Reach your local community where they spend time most.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -271,8 +271,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="print">print</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Print &amp; Branding</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Professional logos, business cards, and flyers that match your digital identity perfectly for a unified look.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">Print &amp; Branding</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Professional logos, business cards, and flyers that match your digital identity perfectly for a unified look.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -283,8 +283,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="description">description</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">GST Registration</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Navigate the complexities of business compliance with expert-led registration and filing services.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">GST Registration</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Navigate the complexities of business compliance with expert-led registration and filing services.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -295,8 +295,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="inventory_2">inventory_2</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Inventory Suite</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Smart stock management that keeps track of every item, ensuring you never miss a sale or overstock.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">Inventory Suite</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Smart stock management that keeps track of every item, ensuring you never miss a sale or overstock.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -307,8 +307,8 @@ export default function LocalBoostHomepage() {
               <div className="w-14 h-14 bg-primary/5 rounded-2xl flex items-center justify-center mb-8">
                 <span className="material-symbols-outlined text-primary text-3xl" data-icon="trending_up">trending_up</span>
               </div>
-              <h4 className="font-['Syne'] text-2xl font-bold text-primary mb-4">Ad Performance</h4>
-              <p className="font-['DM_Sans'] text-on-surface-variant leading-relaxed mb-8 flex-grow">Data-driven marketing campaigns that maximize your ROI by targeting the right customers at the right time.</p>
+              <h4 className="font-['Bricolage_Grotesque'] text-2xl font-bold text-primary mb-4">Ad Performance</h4>
+              <p className="font-ui text-on-surface-variant leading-relaxed mb-8 flex-grow">Data-driven marketing campaigns that maximize your ROI by targeting the right customers at the right time.</p>
               <div className="flex items-center text-secondary font-bold cursor-pointer group">
                 <span className="text-sm">Read more</span>
                 <span className="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform text-lg" data-icon="arrow_forward">arrow_forward</span>
@@ -322,7 +322,7 @@ export default function LocalBoostHomepage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center mb-24">
             <p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">The Process</p>
-            <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary">From Offline to Online in 72 Hours</h2>
+            <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-5xl font-bold text-primary">From Offline to Online in 72 Hours</h2>
           </div>
           <div className="relative max-w-4xl mx-auto">
             {/*  Vertical Line  */}
@@ -371,7 +371,7 @@ export default function LocalBoostHomepage() {
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
             <div className="max-w-xl">
               <p className="text-secondary font-bold text-xs tracking-[0.2em] uppercase mb-4">REAL RESULTS</p>
-              <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold text-primary mb-4">What Our Clients Achieved</h2>
+              <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-5xl font-bold text-primary mb-4">What Our Clients Achieved</h2>
               <p className="text-on-surface-variant font-medium">Real impact for local vendors across India.</p>
             </div>
             <div className="flex space-x-4 mt-8 md:mt-0">
@@ -439,7 +439,7 @@ export default function LocalBoostHomepage() {
         <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
             <p className="text-secondary-fixed font-bold text-xs tracking-[0.2em] uppercase mb-6">Why LocalBoost</p>
-            <h2 className="font-['Syne'] text-4xl lg:text-5xl font-bold mb-10">We Scale While You Stay Local</h2>
+            <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-5xl font-bold mb-10">We Scale While You Stay Local</h2>
             <ul className="space-y-6">
               <li className="flex items-start space-x-4">
                 <div className="w-6 h-6 rounded-full bg-secondary-fixed flex items-center justify-center flex-shrink-0 mt-1">
@@ -515,7 +515,7 @@ export default function LocalBoostHomepage() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="bg-primary-container rounded-[48px] p-12 lg:p-24 text-center relative overflow-hidden">
             <div className="relative z-10">
-              <h2 className="font-['Syne'] text-4xl lg:text-6xl font-bold text-white mb-8">Ready to Boost Your Local Legacy?</h2>
+              <h2 className="font-['Bricolage_Grotesque'] text-4xl lg:text-6xl font-bold text-white mb-8">Ready to Boost Your Local Legacy?</h2>
               <p className="text-on-primary-container text-xl max-w-2xl mx-auto mb-12">Join the digital revolution. Start your transformation today with no upfront cost or commitments.</p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                 <Link to="/business-setup" className="w-full sm:w-auto bg-[#1DB887] text-white px-10 py-5 rounded-[12px] font-bold text-lg hover:scale-105 transition-transform shadow-[0_8px_24px_rgba(29,184,135,0.30)]">Start Free — No Card Needed</Link>
@@ -532,10 +532,10 @@ export default function LocalBoostHomepage() {
       <footer className="bg-slate-50 dark:bg-[#0F1A3D] w-full py-12 px-8 border-t border-[#1B2A5E]/10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
           <div className="flex flex-col items-center md:items-start space-y-4">
-            <span className="font-['Syne'] text-lg font-bold text-[#1B2A5E] dark:text-slate-400">LocalBoost</span>
-            <p className="font-['DM_Sans'] text-xs text-[#1B2A5E] dark:text-slate-400">© 2024 LocalBoost. All rights reserved.</p>
+            <span className="font-['Bricolage_Grotesque'] text-lg font-bold text-[#1B2A5E] dark:text-slate-400">LocalBoost</span>
+            <p className="font-ui text-xs text-[#1B2A5E] dark:text-slate-400">© 2024 LocalBoost. All rights reserved.</p>
           </div>
-          <div className="flex flex-wrap justify-center gap-8 font-['DM_Sans'] text-xs text-[#1B2A5E] dark:text-slate-400">
+          <div className="flex flex-wrap justify-center gap-8 font-ui text-xs text-[#1B2A5E] dark:text-slate-400">
             <a className="hover:text-[#1DB887] transition-colors cursor-pointer" href="#">Privacy Policy</a>
             <a className="hover:text-[#1DB887] transition-colors cursor-pointer" href="#">Terms of Service</a>
             <a className="hover:text-[#1DB887] transition-colors cursor-pointer" href="#">Cookie Policy</a>

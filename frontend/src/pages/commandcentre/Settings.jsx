@@ -20,7 +20,7 @@ function SectionCard({ icon, iconBg, title, children, action }) {
           <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${iconBg}`}>
             <span className="material-symbols-outlined text-[20px]">{icon}</span>
           </div>
-          <h3 className="font-['Syne'] text-lg font-bold text-primary">{title}</h3>
+          <h3 className="font-['Bricolage_Grotesque'] text-lg font-bold text-primary">{title}</h3>
         </div>
         {action}
       </div>
@@ -75,7 +75,7 @@ export default function Settings() {
                 <div className="flex items-center gap-6">
                   <div className="w-24 h-24 bg-surface-container rounded-[18px] flex items-center justify-center border-2 border-dashed border-primary/10 overflow-hidden relative group cursor-pointer hover:border-[#1DB887]/40 transition-colors">
                     <div className="w-full h-full flex items-center justify-center bg-[#0F1A3D] rounded-[16px]">
-                      <span className="font-['Syne'] font-black text-[#1DB887] text-lg">LB</span>
+                      <span className="font-['Bricolage_Grotesque'] font-black text-[#1DB887] text-lg">LB</span>
                     </div>
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity rounded-[16px]">
                       <span className="material-symbols-outlined text-white text-[20px]">upload</span>

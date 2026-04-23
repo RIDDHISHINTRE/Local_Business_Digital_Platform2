@@ -3,14 +3,14 @@ import { useNavigate, Link } from 'react-router-dom';
 
 export default function BusinessSetupForm() {
   return (
-    <div className="bg-surface font-body text-on-surface selection:bg-secondary-container">
+    <div className="bg-surface font-ui text-on-surface selection:bg-secondary-container">
       {/* Screen Content */}
       
 {/* TopNavBar (Fixed Header) */}
 <nav className="fixed top-0 w-full z-50 bg-white/80 nav-blur shadow-sm transition-all duration-200">
 <div className="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
 <div className="flex items-center gap-8">
-<span className="font-['Syne'] text-2xl font-extrabold text-primary tracking-tight">LocalBoost</span>
+<span className="font-['Bricolage_Grotesque'] text-2xl font-extrabold text-primary tracking-tight">LocalBoost</span>
 </div>
 <div className="flex items-center gap-4">
 <Link to="/sign-in" className="px-6 py-2 rounded-lg font-medium text-sm text-primary transition-all active:scale-95 hover:opacity-80">Sign In</Link>
@@ -23,8 +23,8 @@ export default function BusinessSetupForm() {
 <div className="max-w-3xl mx-auto">
 {/* Progress Header Section */}
 <div className="mb-16 text-center">
-<span className="text-secondary font-label text-xs font-bold uppercase tracking-widest block mb-4">Setup in progress</span>
-<h1 className="font-headline text-4xl md:text-5xl font-bold text-primary mb-12">Setting up for: Website Builder</h1>
+<span className="text-secondary font-ui text-xs font-bold uppercase tracking-widest block mb-4">Setup in progress</span>
+<h1 className="font-display text-4xl md:text-5xl font-bold text-primary mb-12">Setting up for: Website Builder</h1>
 {/* Stepper */}
 <div className="flex items-center justify-between relative max-w-lg mx-auto">
 {/* Progress Line Background */}
@@ -36,21 +36,21 @@ export default function BusinessSetupForm() {
 <div className="w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center font-bold text-sm ring-4 ring-white">
 <span className="material-symbols-outlined text-sm" style={{fontVariationSettings: '\'FILL\' 1'}}>check</span>
 </div>
-<span className="mt-3 font-label text-xs font-bold text-secondary uppercase">Account</span>
+<span className="mt-3 font-ui text-xs font-bold text-secondary uppercase">Account</span>
 </div>
 {/* Step 2: Business Info (Active) */}
 <div className="flex flex-col items-center">
 <div className="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm ring-4 ring-white shadow-lg">
                             2
                         </div>
-<span className="mt-3 font-label text-xs font-bold text-primary uppercase">Business Info</span>
+<span className="mt-3 font-ui text-xs font-bold text-primary uppercase">Business Info</span>
 </div>
 {/* Step 3: Submit */}
 <div className="flex flex-col items-center">
 <div className="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold text-sm ring-4 ring-white">
                             3
                         </div>
-<span className="mt-3 font-label text-xs font-bold text-on-surface-variant uppercase">Submit</span>
+<span className="mt-3 font-ui text-xs font-bold text-on-surface-variant uppercase">Submit</span>
 </div>
 </div>
 </div>
@@ -60,17 +60,17 @@ export default function BusinessSetupForm() {
 <span className="material-symbols-outlined text-9xl text-primary" style={{fontVariationSettings: '\'wght\' 200'}}>storefront</span>
 </div>
 <div className="relative z-10">
-<h2 className="font-headline text-2xl font-bold text-primary mb-8">Tell us about your business</h2>
+<h2 className="font-display text-2xl font-bold text-primary mb-8">Tell us about your business</h2>
 <form className="space-y-8">
 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 {/* Business Name */}
 <div className="flex flex-col gap-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="business-name">Business Name</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="business-name">Business Name</label>
 <input className="w-full bg-surface-container-low border-0 rounded-[10px] py-4 px-5 text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant transition-all" id="business-name" placeholder="e.g. Blue Ribbon Bakery" type="text"/>
 </div>
 {/* Category */}
 <div className="flex flex-col gap-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="category">Category</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="category">Category</label>
 <div className="relative">
 <select className="w-full appearance-none bg-surface-container-low border-0 rounded-[10px] py-4 px-5 text-on-surface focus:ring-2 focus:ring-primary/20 transition-all" id="category">
 <option disabled="" selected="" value="">Select a category</option>
@@ -85,24 +85,24 @@ export default function BusinessSetupForm() {
 </div>
 {/* Business Description */}
 <div className="flex flex-col gap-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="description">Business Description</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="description">Business Description</label>
 <textarea className="w-full bg-surface-container-low border-0 rounded-[10px] py-4 px-5 text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant transition-all resize-none" id="description" placeholder="Tell customers what makes your business unique..." rows="4"></textarea>
 </div>
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 {/* Address */}
 <div className="flex flex-col gap-2 md:col-span-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="address">Address</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="address">Address</label>
 <input className="w-full bg-surface-container-low border-0 rounded-[10px] py-4 px-5 text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant transition-all" id="address" placeholder="123 Commerce St" type="text"/>
 </div>
 {/* City */}
 <div className="flex flex-col gap-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="city">City</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="city">City</label>
 <input className="w-full bg-surface-container-low border-0 rounded-[10px] py-4 px-5 text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant transition-all" id="city" placeholder="Main City" type="text"/>
 </div>
 </div>
 {/* WhatsApp Number */}
 <div className="flex flex-col gap-2">
-<label className="font-label text-xs font-bold text-primary uppercase tracking-wider" htmlFor="whatsapp">WhatsApp Number</label>
+<label className="font-ui text-xs font-bold text-primary uppercase tracking-wider" htmlFor="whatsapp">WhatsApp Number</label>
 <div className="relative flex items-center">
 <span className="material-symbols-outlined absolute left-4 text-secondary" style={{fontVariationSettings: '\'FILL\' 1'}}>chat</span>
 <input className="w-full bg-surface-container-low border-0 rounded-[10px] py-4 pl-12 pr-5 text-on-surface focus:ring-2 focus:ring-primary/20 placeholder:text-outline-variant transition-all" id="whatsapp" placeholder="+1 (555) 000-0000" type="tel"/>
@@ -136,14 +136,14 @@ export default function BusinessSetupForm() {
 <div className="bg-primary/5 h-[1px] w-full"></div>
 <div className="max-w-7xl mx-auto py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-8">
 <div>
-<span className="font-['Syne'] text-lg font-bold text-primary">LocalBoost</span>
+<span className="font-['Bricolage_Grotesque'] text-lg font-bold text-primary">LocalBoost</span>
 <p className="mt-2 text-xs text-on-surface-variant">© 2024 LocalBoost. All rights reserved.</p>
 </div>
 <div className="flex flex-wrap justify-center gap-6">
-<a className="font-['DM_Sans'] text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Privacy Policy</a>
-<a className="font-['DM_Sans'] text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Terms of Service</a>
-<a className="font-['DM_Sans'] text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Cookie Policy</a>
-<a className="font-['DM_Sans'] text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Support</a>
+<a className="font-ui text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Privacy Policy</a>
+<a className="font-ui text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Terms of Service</a>
+<a className="font-ui text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Cookie Policy</a>
+<a className="font-ui text-xs text-primary font-medium hover:text-secondary transition-colors" href="#">Support</a>
 </div>
 </div>
 </footer>

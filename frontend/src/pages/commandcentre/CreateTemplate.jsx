@@ -107,7 +107,7 @@ export default function CreateTemplate() {
           <span className="material-symbols-outlined text-[22px]">arrow_back</span>
         </button>
         <div>
-          <h2 className="font-['Syne'] text-2xl font-black text-primary tracking-tight">
+          <h2 className="font-['Bricolage_Grotesque'] text-2xl font-black text-primary tracking-tight">
             {editId ? 'Edit Template' : 'Create New Template'}
           </h2>
           <p className="text-sm text-primary/40 mt-0.5">
@@ -125,7 +125,7 @@ export default function CreateTemplate() {
           {/* Template Details Card */}
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
             <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5">
-              <h3 className="font-['Syne'] text-base font-bold text-primary flex items-center gap-2">
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-[#1DB887]">edit_note</span>
                 Template Details
               </h3>
@@ -183,7 +183,7 @@ export default function CreateTemplate() {
           {/* Available Variables */}
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
             <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5">
-              <h3 className="font-['Syne'] text-base font-bold text-primary flex items-center gap-2">
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-primary/30">data_object</span>
                 Available Variables
               </h3>
@@ -213,7 +213,7 @@ export default function CreateTemplate() {
           {/* Template Settings */}
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden">
             <div className="border-b border-primary/5 bg-surface-container/50 px-7 py-5">
-              <h3 className="font-['Syne'] text-base font-bold text-primary flex items-center gap-2">
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-primary/30">tune</span>
                 Template Settings
               </h3>
@@ -243,7 +243,7 @@ export default function CreateTemplate() {
           {/* Live Preview */}
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] overflow-hidden sticky top-24">
             <div className="bg-[#0F1A3D] px-7 py-5">
-              <h3 className="font-['Syne'] text-base font-bold text-white flex items-center gap-2">
+              <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-white flex items-center gap-2">
                 <span className="material-symbols-outlined text-[18px] text-[#1DB887]">visibility</span>
                 Live Preview
               </h3>
@@ -275,7 +275,7 @@ export default function CreateTemplate() {
 
           {/* Actions */}
           <div className="bg-surface-container-lowest rounded-[20px] border border-primary/5 shadow-[0_12px_40px_rgba(27,42,94,0.08)] p-7">
-            <h3 className="font-['Syne'] text-base font-bold text-primary mb-5 flex items-center gap-2">
+            <h3 className="font-['Bricolage_Grotesque'] text-base font-bold text-primary mb-5 flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px] text-primary/30">rocket_launch</span>
               Actions
             </h3>

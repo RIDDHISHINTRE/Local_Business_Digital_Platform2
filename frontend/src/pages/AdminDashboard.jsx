@@ -153,11 +153,11 @@ export default function AdminDashboard() {
   const currentTabLabel = tabs.find(t => t.id === activeTab)?.label || "Dashboard";
 
   return (
-    <div className="bg-surface font-body text-on-background antialiased min-h-screen">
+    <div className="bg-surface font-ui text-on-background antialiased min-h-screen">
       {/* SideNavBar (Admin Control) */}
       <aside className="h-screen w-72 fixed left-0 top-0 bg-[#0F1A3D] text-white shadow-2xl flex flex-col py-10 px-6 z-50">
         <div className="mb-12">
-          <span className="font-['Syne'] font-black text-[#1DB887] text-2xl tracking-tighter">LocalBoost</span>
+          <span className="font-['Bricolage_Grotesque'] font-black text-[#1DB887] text-2xl tracking-tighter">LocalBoost</span>
           <div className="mt-8 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border border-white/10 overflow-hidden">
                  {user?.name ? (
@@ -171,7 +171,7 @@ export default function AdminDashboard() {
                  )}
             </div>
             <div>
-              <p className="font-['Syne'] text-sm font-bold tracking-widest uppercase">{user?.name || "Admin Control"}</p>
+              <p className="font-['Bricolage_Grotesque'] text-sm font-bold tracking-widest uppercase">{user?.name || "Admin Control"}</p>
               <p className="text-xs text-slate-400">System Oversight</p>
             </div>
           </div>
@@ -189,7 +189,7 @@ export default function AdminDashboard() {
               }`}
             >
               <span className="material-symbols-outlined" data-icon={t.icon}>{t.icon}</span>
-              <span className="font-['DM_Sans'] text-sm uppercase tracking-widest">{t.label}</span>
+              <span className="font-ui text-sm font-medium uppercase tracking-widest">{t.label}</span>
             </button>
           ))}
 
@@ -199,14 +199,14 @@ export default function AdminDashboard() {
               className="mt-4 w-full flex items-center gap-3 px-4 py-3 rounded-xl text-yellow-500 hover:text-yellow-400 hover:bg-white/5 transition-all duration-300"
             >
             <span className="material-symbols-outlined">rocket_launch</span>
-            <span className="font-['DM_Sans'] text-sm uppercase tracking-widest">Command Centre</span>
+            <span className="font-ui text-sm font-medium uppercase tracking-widest">Command Centre</span>
           </button>
         </nav>
         
         <div className="mt-auto pt-6 border-t border-white/5">
           <button onClick={handleLogout} className="flex items-center gap-3 text-slate-400 hover:text-white px-4 py-3 w-full hover:bg-white/5 transition-all duration-300">
             <span className="material-symbols-outlined" data-icon="logout">logout</span>
-            <span className="font-['DM_Sans'] text-sm uppercase tracking-widest">Logout</span>
+            <span className="font-ui text-sm font-medium uppercase tracking-widest">Logout</span>
           </button>
         </div>
       </aside>
@@ -216,17 +216,17 @@ export default function AdminDashboard() {
         {/* Top Header Panel */}
         <header className="bg-white/80 backdrop-blur-md sticky top-0 z-40 px-10 py-6 flex justify-between items-center shadow-sm">
           <div>
-            <p className="text-[11px] font-bold text-[#1DB887] uppercase tracking-[0.2em] mb-1">Administrative Terminal</p>
-            <h1 className="font-['Syne'] text-3xl font-bold text-primary tracking-tight">{currentTabLabel}</h1>
+            <p className="font-ui text-[11px] font-bold text-[#1DB887] uppercase tracking-[0.12em] mb-1">Administrative Terminal</p>
+            <h1 className="font-['Bricolage_Grotesque'] text-3xl font-bold text-primary tracking-tight">{currentTabLabel}</h1>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center bg-surface-container-low px-4 py-2 rounded-lg gap-2 border border-outline/5">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-              <span className="text-sm font-bold text-primary">4 Pending</span>
+              <span className="text-sm font-semibold text-primary font-mono">4 Pending</span>
             </div>
             <div className="flex items-center bg-surface-container-low px-4 py-2 rounded-lg gap-2 border border-outline/5">
               <span className="w-2 h-2 rounded-full bg-[#1DB887]"></span>
-              <span className="text-sm font-bold text-primary">12 Approved</span>
+              <span className="text-sm font-semibold text-primary font-mono">12 Approved</span>
             </div>
             <button className="ml-4 w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:opacity-90 transition-all">
               <span className="material-symbols-outlined" data-icon="search">search</span>
@@ -247,8 +247,8 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-[#1DB887] bg-[#1DB887]/5 px-2 py-1 rounded-full">+12%</span>
                   </div>
-                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Total Businesses</h3>
-                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">120</p>
+                  <h3 className="font-['Bricolage_Grotesque'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Total Businesses</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-mono">120</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
                   <div className="flex justify-between items-start mb-4">
@@ -257,8 +257,8 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-amber-500 bg-amber-500/5 px-2 py-1 rounded-full">4 Urgently</span>
                   </div>
-                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Pending Verification</h3>
-                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">6</p>
+                  <h3 className="font-['Bricolage_Grotesque'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Pending Verification</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-mono">6</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
                   <div className="flex justify-between items-start mb-4">
@@ -267,8 +267,8 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-blue-500 bg-blue-500/5 px-2 py-1 rounded-full">Active</span>
                   </div>
-                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Active Services</h3>
-                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">24</p>
+                  <h3 className="font-['Bricolage_Grotesque'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Active Services</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-mono">24</p>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 hover:border-[#1DB887]/30 transition-all group">
                   <div className="flex justify-between items-start mb-4">
@@ -277,8 +277,8 @@ export default function AdminDashboard() {
                     </div>
                     <span className="text-[10px] font-black text-purple-500 bg-purple-500/5 px-2 py-1 rounded-full">842 Total</span>
                   </div>
-                  <h3 className="font-['Syne'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Emails Sent Today</h3>
-                  <p className="text-3xl font-black text-primary mt-1 font-['Syne']">156</p>
+                  <h3 className="font-['Bricolage_Grotesque'] text-secondary/60 text-[10px] font-black uppercase tracking-[0.2em]">Emails Sent Today</h3>
+                  <p className="text-3xl font-black text-primary mt-1 font-mono">156</p>
                 </div>
               </div>
 
@@ -287,7 +287,7 @@ export default function AdminDashboard() {
                 {/*  Business Funnel (Pipeline)  */}
                 <div className="col-span-2 bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
                   <div className="flex justify-between items-center mb-10">
-                    <h3 className="font-['Syne'] text-xl font-bold text-primary">Business Lifecycle Pipeline</h3>
+                    <h3 className="font-['Bricolage_Grotesque'] text-xl font-bold text-primary">Business Lifecycle Pipeline</h3>
                     <span className="text-xs font-bold text-[#1DB887] bg-[#1DB887]/5 px-3 py-1 rounded-full">Real-time Stream</span>
                   </div>
                   <div className="flex justify-between items-center relative">
@@ -305,7 +305,7 @@ export default function AdminDashboard() {
                           <span className={`material-symbols-outlined text-${step.color === 'emerald' ? '[#1DB887]' : step.color + '-500'}`}>{step.icon}</span>
                         </div>
                         <p className="text-[11px] font-black text-primary/40 uppercase tracking-widest mb-1">{step.label}</p>
-                        <p className="font-['Syne'] font-black text-primary">{step.count}</p>
+                        <p className="font-mono font-black text-primary">{step.count}</p>
                       </div>
                     ))}
                   </div>
@@ -313,7 +313,7 @@ export default function AdminDashboard() {
 
                 {/*  Quick Actions Panel  */}
                 <div className="bg-[#0F1A3D] rounded-[32px] p-8 text-white">
-                  <h3 className="font-['Syne'] text-xl font-bold mb-6">Quick Pilot</h3>
+                  <h3 className="font-['Bricolage_Grotesque'] text-xl font-bold mb-6">Quick Pilot</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <button onClick={() => navigate('/admin/service/new')} className="flex flex-col items-center bg-white/5 hover:bg-[#1DB887] p-4 rounded-2xl transition-all group">
                       <span className="material-symbols-outlined mb-2 group-hover:scale-110 transition-transform">add_circle</span>
@@ -340,7 +340,7 @@ export default function AdminDashboard() {
                 {/*  Activity Feed  */}
                 <div className="col-span-12 lg:col-span-5 bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
                   <div className="flex justify-between items-center mb-8">
-                    <h3 className="font-['Syne'] text-xl font-bold text-primary">System Activity</h3>
+                    <h3 className="font-['Bricolage_Grotesque'] text-xl font-bold text-primary">System Activity</h3>
                     <button className="text-[10px] font-bold text-primary/40 uppercase tracking-widest hover:text-[#1DB887]">View All</button>
                   </div>
                   <div className="space-y-6">
@@ -370,7 +370,7 @@ export default function AdminDashboard() {
                   <div className="grid grid-cols-2 gap-8">
                     {/*  Top Services  */}
                     <div className="bg-white rounded-[32px] p-8 border border-primary/5 shadow-sm">
-                      <h3 className="font-['Syne'] text-lg font-bold text-primary mb-6">Hot Services</h3>
+                      <h3 className="font-['Bricolage_Grotesque'] text-lg font-bold text-primary mb-6">Hot Services</h3>
                       <div className="space-y-4">
                         {[
                           { name: 'Website Builder', use: 85, color: '#1DB887' },
@@ -397,7 +397,7 @@ export default function AdminDashboard() {
                           <span className="material-symbols-outlined text-orange-600" style={{ fontVariationSettings: "'FILL' 1" }}>warning</span>
                           <span className="text-[10px] font-black uppercase tracking-widest text-orange-900/60">System Alert</span>
                         </div>
-                        <h4 className="font-['Syne'] text-lg font-bold text-orange-900 mb-2">2 Failed Actions</h4>
+                        <h4 className="font-['Bricolage_Grotesque'] text-lg font-bold text-orange-900 mb-2">2 Failed Actions</h4>
                         <p className="text-xs text-orange-800/80 leading-relaxed font-medium">Domain connection failed for 'Sunita Sarees' and 'Peak Builders'.</p>
                       </div>
                       <button className="mt-6 w-full py-2 bg-orange-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-orange-700 transition-colors">Resolve Now</button>
@@ -409,7 +409,7 @@ export default function AdminDashboard() {
                     <div className="relative z-10 flex justify-between items-center">
                       <div className="max-w-md">
                         <p className="text-[10px] font-black text-white/60 uppercase tracking-[0.3em] mb-3">Performance Insight</p>
-                        <h3 className="font-['Syne'] text-2xl font-bold leading-tight mb-4">Verification speed is up by 24% this week.</h3>
+                        <h3 className="font-['Bricolage_Grotesque'] text-2xl font-bold leading-tight mb-4">Verification speed is up by 24% this week.</h3>
                         <p className="text-white/80 text-sm font-medium">Your current onboarding friction is at an all-time low. Businesses are reaching "Active" status 1.2 days faster.</p>
                       </div>
                       <div className="w-24 h-24 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
@@ -433,8 +433,8 @@ export default function AdminDashboard() {
                      <span className="material-symbols-outlined">pending_actions</span>
                    </div>
                    <div>
-                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Awaiting Review</p>
-                     <p className="text-2xl font-black text-primary font-['Syne']">
+                     <p className="font-['Bricolage_Grotesque'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Awaiting Review</p>
+                     <p className="text-2xl font-black text-primary font-mono">
                        {DUMMY_USERS.filter(u => u.status === 'pending').length} Businesses
                      </p>
                    </div>
@@ -444,8 +444,8 @@ export default function AdminDashboard() {
                      <span className="material-symbols-outlined">description</span>
                    </div>
                    <div>
-                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Docs Uploaded</p>
-                     <p className="text-2xl font-black text-primary font-['Syne']">100% Complete</p>
+                     <p className="font-['Bricolage_Grotesque'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Docs Uploaded</p>
+                     <p className="text-2xl font-black text-primary font-['Bricolage_Grotesque']">100% Complete</p>
                    </div>
                 </div>
                 <div className="bg-white p-6 rounded-[24px] shadow-sm border border-primary/5 flex items-center gap-4">
@@ -453,8 +453,8 @@ export default function AdminDashboard() {
                      <span className="material-symbols-outlined">verified</span>
                    </div>
                    <div>
-                     <p className="font-['Syne'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Avg. Review Time</p>
-                     <p className="text-2xl font-black text-primary font-['Syne']">4.2 Hours</p>
+                     <p className="font-['Bricolage_Grotesque'] text-[10px] font-black text-primary/30 uppercase tracking-[0.2em]">Avg. Review Time</p>
+                     <p className="text-2xl font-black text-primary font-['Bricolage_Grotesque']">4.2 Hours</p>
                    </div>
                 </div>
               </div>
@@ -462,7 +462,7 @@ export default function AdminDashboard() {
               {/* Pending Queue */}
               <div className="bg-white rounded-[32px] border border-primary/5 shadow-sm overflow-hidden">
                 <div className="px-8 py-6 border-b border-primary/5 flex justify-between items-center bg-slate-50/30">
-                  <h3 className="font-['Syne'] text-xl font-bold text-primary">Verification Queue</h3>
+                  <h3 className="font-['Bricolage_Grotesque'] text-xl font-bold text-primary">Verification Queue</h3>
                   <div className="flex gap-2">
                     <button className="px-4 py-1.5 bg-white border border-primary/10 rounded-xl text-xs font-bold text-primary/60 hover:bg-slate-50">Bulk Approve</button>
                     <button className="px-4 py-1.5 bg-white border border-primary/10 rounded-xl text-xs font-bold text-primary/60 hover:bg-slate-50">Sort: Oldest First</button>
@@ -532,7 +532,7 @@ export default function AdminDashboard() {
           {activeTab === "services" && (
              <div className="bg-surface-container-lowest rounded-[20px] shadow-[0_12px_40px_rgba(27,42,94,0.10)] overflow-hidden border border-primary/5">
                <div className="p-8 border-b border-surface-container flex justify-between items-center">
-                 <h2 className="font-['Syne'] text-xl font-bold text-primary">Service Catalogue</h2>
+                 <h2 className="font-['Bricolage_Grotesque'] text-xl font-bold text-primary">Service Catalogue</h2>
                  <button
                    onClick={() => navigate('/admin/service/new')}
                    className="bg-[#1DB887] text-white px-6 py-2 rounded-lg text-sm font-bold shadow hover:scale-105 active:scale-95 transition-all"
@@ -656,7 +656,7 @@ export default function AdminDashboard() {
                   <div className="flex items-center gap-6">
                     <img src={selectedBusiness.avatar} className="w-20 h-20 rounded-[28px] object-cover ring-4 ring-white shadow-xl" alt="" />
                     <div>
-                      <h2 className="font-['Syne'] text-3xl font-bold text-primary tracking-tight">{selectedBusiness.businessName}</h2>
+                      <h2 className="font-['Bricolage_Grotesque'] text-3xl font-bold text-primary tracking-tight">{selectedBusiness.businessName}</h2>
                       <div className="flex items-center gap-3 mt-1">
                         <span className="text-xs font-bold text-[#1DB887]">{selectedBusiness.category}</span>
                         <div className="w-1.5 h-1.5 rounded-full bg-slate-200"></div>
@@ -744,7 +744,7 @@ export default function AdminDashboard() {
                     <div className="flex justify-between items-center mb-8">
                       <div>
                         <h4 className="text-[11px] font-black text-primary/30 uppercase tracking-[0.2em]">Service Entitlements</h4>
-                        <p className="text-lg font-['Syne'] font-bold text-primary mt-1">Configure user's active toolkit</p>
+                        <p className="text-lg font-['Bricolage_Grotesque'] font-bold text-primary mt-1">Configure user's active toolkit</p>
                       </div>
                       <div className="px-4 py-2 bg-white rounded-xl border border-primary/5 flex items-center gap-3">
                         <span className="text-[10px] font-black text-primary/40 uppercase">Pricing Visible</span>
@@ -780,13 +780,13 @@ export default function AdminDashboard() {
         <footer className="mt-auto py-12 px-10 border-t border-primary/5 bg-surface-container-low">
           <div className="flex flex-col md:flex-row justify-between items-center max-w-full">
             <div className="mb-4 md:mb-0">
-              <span className="font-['Syne'] text-lg font-bold text-primary">LocalBoost</span>
-              <p className="font-['DM_Sans'] text-xs text-on-surface-variant mt-1">© 2024 LocalBoost. System Administration Dashboard.</p>
+              <span className="font-['Bricolage_Grotesque'] text-lg font-bold text-primary">LocalBoost</span>
+              <p className="font-ui text-xs text-on-surface-variant mt-1">© 2024 LocalBoost. System Administration Dashboard.</p>
             </div>
             <div className="flex gap-8">
-              <a className="font-['DM_Sans'] text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">Privacy Policy</a>
-              <a className="font-['DM_Sans'] text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">Terms of Service</a>
-              <a className="font-['DM_Sans'] text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">System Status</a>
+              <a className="font-ui text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">Privacy Policy</a>
+              <a className="font-ui text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">Terms of Service</a>
+              <a className="font-ui text-xs text-on-surface-variant hover:text-[#1DB887] transition-colors" href="#!">System Status</a>
             </div>
           </div>
         </footer>
